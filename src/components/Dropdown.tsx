@@ -21,8 +21,8 @@ const Dropdown: React.FC<DropProps> = ({ label, items }) => {
           <path
             fill="currentColor"
             stroke="currentColor"
-            stroke-linejoin="round"
-            stroke-width="4"
+            strokeLinejoin="round"
+            strokeWidth="4"
             d="M36 19L24 31L12 19z"
           ></path>
         </svg>

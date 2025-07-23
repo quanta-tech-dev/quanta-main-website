@@ -6,50 +6,9 @@ import HeaderLogo from '@/components/HeaderLogo';
 import HeaderButtons from '../../components/HeaderButtons';
 import MobileMenuButton from '@/components/MobileMenuButton';
 import MobileMenu from '@/components/MobileMenu';
+import { navItems } from '../data/navItems';
 
-export default function Header2({
-  navItems = [
-    { label: 'Home', href: '/' },
-    {
-      label: 'Products',
-      href: '/products',
-      dropdown: [
-        { label: 'Quanta ERP', href: '/products/quanta-erp' },
-        { label: 'Quanta BI', href: '/products/quanta-bi' },
-        { label: 'Quanta LMS', href: '/products/quanta-lms' },
-      ],
-    },
-    {
-      label: 'Solutions',
-      href: '/solutions',
-      dropdown: [
-        { label: 'Retail', href: '/solutions/retail' },
-        { label: 'Helthcare', href: '/solutions/helthcare' },
-        { label: 'Manufacturing', href: '/solutions/manufacturing' },
-      ],
-    },
-    { label: 'Pricing', href: '/pricing' },
-    {
-      label: 'Resources',
-      href: '/resources',
-      dropdown: [
-        { label: 'Blog', href: '/resources/blog' },
-        { label: 'Case studies', href: '/resources/case-studies' },
-        { label: 'Guides', href: '/resources/guides' },
-      ],
-    },
-    {
-      label: 'Company',
-      href: '/company',
-      dropdown: [
-        { label: 'Guides', href: '/resources/guides' },
-        { label: 'Careers', href: '/resources/careers' },
-        { label: 'Team', href: '/resources/team' },
-      ],
-    },
-    { label: 'Contact', href: '/contact' },
-  ],
-}) {
+export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<number | null>(null);
   const [lang, setLang] = useState('en');
@@ -64,6 +23,7 @@ export default function Header2({
           {/* Desktop Navigation */}
           <DesktopNav navItems={navItems} />
 
+          {/* Header buttons */}
           <HeaderButtons lang={lang} setLang={setLang} />
 
           {/* Mobile menu button */}
