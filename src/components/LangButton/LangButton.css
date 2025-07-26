@@ -1,6 +1,6 @@
 .wrap {
   position: relative;
-  /* width: 6vw; */
+  width: 100px;
 }
 
 input[type='radio'] {

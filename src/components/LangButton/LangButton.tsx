@@ -10,10 +10,9 @@ const LangButton: React.FC<LangButtonProps> = ({
   lang,
   setLang,
   idPrefix = '',
-  width = 24,
 }) => {
   return (
-    <div className={`wrap w-${width}`}>
+    <div className={`wrap`}>
       <input
         type="radio"
         id={`${idPrefix}en`}
