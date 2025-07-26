@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import './LangButton.css';
 interface LangButtonProps {
   lang: string;

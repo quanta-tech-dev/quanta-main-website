@@ -1,5 +1,6 @@
 import React from 'react';
 import Dropdown from './Dropdown';
+import Link from 'next/link';
 
 interface DesktopNavrops {
   navItems: (
@@ -22,17 +23,17 @@ interface DesktopNavrops {
 const DesktopNav: React.FC<DesktopNavrops> = ({ navItems }) => {
   return (
     <nav className="hidden md:flex space-x-8">
-      {navItems.map((item, index) => (
+      {navItems.map((item) => (
         <div key={item.label} className="relative">
           {item.dropdown ? (
             <Dropdown label={item.label} items={item.dropdown} />
           ) : (
-            <a
+            <Link
               href={item.href}
               className=" hover:cursor-pointer py-2 font-medium transition-colors"
             >
               {item.label}
-            </a>
+            </Link>
           )}
         </div>
       ))}

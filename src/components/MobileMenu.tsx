@@ -1,5 +1,4 @@
 import React from 'react';
-import HeaderButtons from './HeaderButtons';
 import LangButton from './LangButton/LangButton';
 
 interface MenuProps {
