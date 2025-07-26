@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 
 interface DropProps {
@@ -33,12 +34,12 @@ const Dropdown: React.FC<DropProps> = ({ label, items }) => {
             className="border-b-1 border-gray-200 last:border-none"
             key={item.label}
           >
-            <a
+            <Link
               className="rounded-t hover:bg-gray-200 hover:cursor-pointer py-2 px-4 block whitespace-no-wrap"
               href={item.href}
             >
               {item.label}
-            </a>
+            </Link>
           </li>
         ))}
       </ul>

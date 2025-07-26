@@ -1,5 +1,6 @@
 import React from 'react';
 import LangButton from './LangButton/LangButton';
+import Link from 'next/link';
 
 interface MenuProps {
   mobileMenuOpen: boolean;
@@ -76,24 +77,24 @@ const MobileMenu: React.FC<MenuProps> = ({
                 {activeDropdown === index && (
                   <div className="pl-4 pr-2 py-1 space-y-1 rounded-md mt-1 mb-2">
                     {item.dropdown.map((dropdownItem) => (
-                      <a
+                      <Link
                         key={dropdownItem.label}
                         href={dropdownItem.href}
                         className="block border-b-1 border-gray-200 px-3 py-2 text-sm font-medium text-gray-700 hover:text-purple-600 hover:bg-gray-100"
                       >
                         {dropdownItem.label}
-                      </a>
+                      </Link>
                     ))}
                   </div>
                 )}
               </div>
             ) : (
-              <a
+              <Link
                 href={item.href}
                 className="block px-3 py-2 border-b-1 border-gray-200 text-base font-medium text-gray-700 hover:text-purple-600 hover:bg-gray-50"
               >
                 {item.label}
-              </a>
+              </Link>
             )}
           </div>
         ))}
