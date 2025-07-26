@@ -3,10 +3,10 @@
 import { useState } from 'react';
 import DesktopNav from '@/components/DesktopNav';
 import HeaderLogo from '@/components/HeaderLogo';
-import HeaderButtons from '../../components/HeaderButtons';
+import HeaderButtons from '../components/HeaderButtons';
 import MobileMenuButton from '@/components/MobileMenuButton';
 import MobileMenu from '@/components/MobileMenu';
-import { navItems } from '../data/navItems';
+import { navItems } from '../app/data/navItems';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -15,7 +15,7 @@ export default function Header() {
 
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-20 pt-4">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <HeaderLogo />
