@@ -1,11 +1,12 @@
 import React from 'react';
 import './Footer.css';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const Footer = () => {
   return (
     <footer className="text-white w-full">
-      <section className="bg-[rgb(6,16,51)] bg-opacity-80 h-96">
+      <section className="bg-[rgb(6,16,51)] bg-opacity-80">
         <div className="custom-layout">
           <div className="w-full flex justify-between items-center py-4 sm:py-8">
             <div className="relative w-[120px] h-[40px] sm:w-[160px] sm:h-[50px]">
@@ -44,7 +45,7 @@ const Footer = () => {
               <div className="w-full flex flex-wrap md:flex-nowrap lg:flex-col gap-8 xl:gap-10">
                 <div className="w-full flex flex-col gap-[0.5rem] xl:gap-[0.75rem]">
                   <div className=" flex gap-4">
-                    <img
+                    {/* <img
                       alt="USA Flag"
                       loading="lazy"
                       width="37"
@@ -52,39 +53,17 @@ const Footer = () => {
                       decoding="async"
                       data-nimg="1"
                       src="/_next/static/media/usa-flag.b13795ab.svg"
-                    />
-                    <span className="text-lg font-medium">USA Office</span>
+                    /> */}
+                    <span className="text-lg font-medium">
+                      Azerbaijan Office
+                    </span>
                   </div>
                   <div className="text-sm font-normal">
-                    27 Narrows Way, Monroe Township, <br /> NJ 08831
+                    Baku, <br /> AZ 00000
                   </div>
                   <div className="text-lg font-normal">
-                    <a href="mailto:sales@atliq.com">sales@atliq.com</a>
+                    <a href="mailto:sales@atliq.com">sales@atliq.com</a> |{' '}
                     <a href="tel:+19734356491">+1 973 435 6491</a>
-                  </div>
-                </div>
-                <div className="w-full flex flex-col gap-[0.5rem] xl:gap-[0.75rem]">
-                  <div className=" flex gap-4">
-                    <img
-                      alt="India Flag"
-                      loading="lazy"
-                      width="37"
-                      height="25"
-                      decoding="async"
-                      data-nimg="1"
-                      src="/_next/static/media/india-flag.a5e99dee.svg"
-                    />
-                    <span className="text-lg font-medium">India Office</span>
-                  </div>
-                  <div className="text-sm font-normal">
-                    301/6/7, Ocean Complex, Nr Genda Circle, <br /> Vadiwadi,
-                    Vadodara – 390023
-                  </div>
-                  <div>
-                    <div className="text-lg font-normal">
-                      <a href="mailto:info@atliq.com">info@atliq.com</a>
-                      <a href="tel:+919979738578">+91 997 973 8578</a>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -93,41 +72,40 @@ const Footer = () => {
               <div>
                 <div className="text-2xl font-semibold mb-6">Company</div>
                 <div className="text-sm text-customGray-300 font-normal mb-4 last:mb-0">
-                  <a href="/about-us">About</a>
+                  <Link href="/about-us">About Us</Link>
                 </div>
                 <div className="text-sm text-customGray-300 font-normal mb-4 last:mb-0">
-                  <a href="/case-studies">Case Studies</a>
+                  <Link href="/case-studies">Case Studies</Link>
                 </div>
                 <div className="text-sm text-customGray-300 font-normal mb-4 last:mb-0">
-                  <a href="/resources">Resources</a>
+                  <Link href="/resources">Resources</Link>
                 </div>
                 <div className="text-sm text-customGray-300 font-normal mb-4 last:mb-0">
-                  <a href="/career">Careers</a>
+                  <Link href="/career">Careers</Link>
                 </div>
                 <div className="text-sm text-customGray-300 font-normal mb-4 last:mb-0">
-                  <a href="/contact-us">Contact us</a>
+                  <Link href="/contact">Contact us</Link>
                 </div>
               </div>
               <div>
-                <div className="text-2xl font-semibold mb-6">Services</div>
+                <div className="text-2xl font-semibold mb-6">Products</div>
                 <div className="text-sm text-customGray-300 font-normal mb-4 last:mb-0">
-                  <a href="/service/ai-service">AI Development</a>
+                  <Link href="/products/quanta-bi">Quanta BI</Link>
                 </div>
                 <div className="text-sm text-customGray-300 font-normal mb-4 last:mb-0">
-                  <a href="/service/data-analytics-service">Data Analytics</a>
+                  <Link href="/products/quanta-erp">Quanta ERP</Link>
                 </div>
                 <div className="text-sm text-customGray-300 font-normal mb-4 last:mb-0">
-                  <a href="/service/mobile-app-development-service">
-                    Mobile App Development
-                  </a>
+                  <Link href="/products/quanta-lms">Quanta LMS</Link>
                 </div>
                 <div className="text-sm text-customGray-300 font-normal mb-4 last:mb-0">
-                  <a href="/service/software-development">
-                    Software Development
-                  </a>
+                  <Link href="/solutions/helthcare">Helthcare</Link>
                 </div>
                 <div className="text-sm text-customGray-300 font-normal mb-4 last:mb-0">
-                  <a href="/service/digital-marketing">Digital Marketing</a>
+                  <Link href="/solutions/manufacturing">Manufacturing</Link>
+                </div>
+                <div className="text-sm text-customGray-300 font-normal mb-4 last:mb-0">
+                  <Link href="/solutions/retail">Retail</Link>
                 </div>
               </div>
               <div className="w-full sm:w-auto">
