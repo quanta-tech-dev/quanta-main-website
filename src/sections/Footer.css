@@ -45,3 +45,7 @@
 .border-custom-gray {
   border-color: rgb(45 47 49 / 1);
 }
+
+.text-customGray-300 {
+  color: rgb(209 215 220 / 1);
+}
