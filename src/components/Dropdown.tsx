@@ -8,7 +8,7 @@ interface DropProps {
 
 const Dropdown: React.FC<DropProps> = ({ label, items }) => {
   return (
-    <div className="dropdown inline-block relative">
+    <div className="dropdown inline-block relative group">
       <button className="rounded inline-flex items-center hover:cursor-pointer">
         <span className="mr-1">{label}</span>
         <svg
@@ -28,7 +28,7 @@ const Dropdown: React.FC<DropProps> = ({ label, items }) => {
           ></path>
         </svg>
       </button>
-      <ul className="dropdown-menu absolute hidden text-gray-700 pt-1 w-64 bg-gray-100 rounded-lg">
+      <ul className="dropdown-menu absolute hidden group-hover:flex flex-col text-gray-700 pt-1 w-64 bg-gray-100 rounded-lg">
         {items?.map((item) => (
           <li
             className="border-b-1 border-gray-200 last:border-none"
