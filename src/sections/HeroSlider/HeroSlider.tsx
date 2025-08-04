@@ -5,7 +5,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import './HeroSlider.css';
 
-import { Pagination } from 'swiper/modules';
+import { Pagination, Autoplay } from 'swiper/modules';
 
 const HeroSlider = () => {
   const pagination = {
@@ -15,18 +15,15 @@ const HeroSlider = () => {
     },
   };
   return (
-    <div
-      style={{
-        width: '100%',
-        maxWidth: '1200px',
-        margin: '0 auto',
-        height: '400px',
-      }}
-    >
+    <div className="swiper-w">
       <Swiper
         pagination={pagination}
-        modules={[Pagination]}
-        className="mySwiper"
+        modules={[Pagination, Autoplay]}
+        // autoplay={{
+        //   delay: 3000,
+        //   disableOnInteraction: false,
+        // }}
+        // loop={true}
       >
         <SwiperSlide>
           <div className="slide-box">
@@ -59,7 +56,7 @@ const HeroSlider = () => {
                   height="1016"
                   decoding="async"
                   data-nimg="1"
-                  src="/images/slider/home_banner1.jpg"
+                  src="/images/slider/home_banner3.jpg"
                 />
               </div>
             </div>
@@ -72,7 +69,10 @@ const HeroSlider = () => {
                 <div className="text-[1.5rem] xl:text-[2.8rem] lg:text-[2.75rem] md:text-[2.25rem] leading-[130%] font-semibold mb-[1.875rem] lg:pr-10 md:p-0">
                   Breathe Easy - We Helped{' '}
                   <span className="text-[#602BE9]">FreshAir</span> Cut False
-                  Alarms by <span className="text-[#602BE9]">80%</span>
+                  Alarms by{' '}
+                  <span className="text-[#602BE9]">
+                    <br /> 80%
+                  </span>
                 </div>
                 <p className="mb-[1rem] sm:mb-[1.875rem] ">
                   <span className="text-[#602BE9]">AI-powered</span> anomaly
@@ -98,7 +98,7 @@ const HeroSlider = () => {
                   height="1016"
                   decoding="async"
                   data-nimg="1"
-                  src="/images/slider/home_banner2.png"
+                  src="/images/slider/home_banner1.jpg"
                 />
               </div>
             </div>
@@ -141,7 +141,7 @@ const HeroSlider = () => {
                   height="508"
                   decoding="async"
                   data-nimg="1"
-                  src="/images/slider/home_banner3.jpg"
+                  src="/images/slider/home_banner2.png"
                 />
               </div>
             </div>
