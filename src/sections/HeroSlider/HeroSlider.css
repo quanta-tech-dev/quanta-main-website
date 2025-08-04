@@ -87,3 +87,16 @@
 /* .text-[#602BE9] {
   color: rgb(96 43 233 / 1);
 } */
+
+@media (max-width: 480px) {
+  .swiper-pagination {
+    bottom: 0 !important;
+  }
+}
+
+@media (max-width: 1400px) {
+  .swiper-w {
+    width: 96%;
+    max-width: 96%;
+  }
+}

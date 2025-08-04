@@ -15,15 +15,15 @@ const HeroSlider = () => {
     },
   };
   return (
-    <div className="swiper-w">
+    <div className="swiper-w container">
       <Swiper
         pagination={pagination}
         modules={[Pagination, Autoplay]}
-        // autoplay={{
-        //   delay: 3000,
-        //   disableOnInteraction: false,
-        // }}
-        // loop={true}
+        autoplay={{
+          delay: 3000,
+          disableOnInteraction: false,
+        }}
+        loop={true}
       >
         <SwiperSlide>
           <div className="slide-box">
