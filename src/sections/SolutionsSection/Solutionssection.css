@@ -1,0 +1,15 @@
+.custom-secondary-title {
+    font-size: 2.625rem;
+    line-height: 3.375rem;
+    font-weight: 600;
+}
+.bg-primary {
+    background-color: rgb(96 43 233 / 1);
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .custom-secondary-title {
+        font-size: 1.5rem;
+    }
+}
