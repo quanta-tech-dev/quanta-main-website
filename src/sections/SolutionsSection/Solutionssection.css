@@ -7,7 +7,6 @@
     background-color: rgb(96 43 233 / 1);
     cursor: pointer;
 }
-
 @media (max-width: 768px) {
     .custom-secondary-title {
         font-size: 1.5rem;
