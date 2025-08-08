@@ -1,0 +1,22 @@
+.bg-brandDark {
+    --tw-bg-opacity: 1;
+    background-color: rgb(6 16 51 / var(--tw-bg-opacity));
+}
+
+.swiper-button{
+    cursor: pointer;
+}
+/*.swiper-slide{*/
+/*    width: 372px;*/
+/*    height: 500px;*/
+/*}*/
+
+.swiper-button svg {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.author-img{
+    width: 24px;
+    height: 24px;
+}
