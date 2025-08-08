@@ -31,7 +31,7 @@ export const ServeSection = () => {
                         </div>
                         <div className="text-center text-white">
                             <div className="text-[1.4rem] xl:text-[1.6rem] font-semibold">Latest Articles</div>
-                            <Link href={"/blogs"} className="text-sm sm:text-base font-normal relative inline-block text-white after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full"
+                            <Link href={"/resources/blogs"} className="text-sm sm:text-base font-normal relative inline-block text-white after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full"
                             >Read all articles</Link></div>
                         <div
                             className="swiper-button image-swiper-button-next_REVIEWS bg-[#030715] dark:bg-[#030715] p-2 rounded-full">
