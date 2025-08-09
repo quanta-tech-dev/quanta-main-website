@@ -6,7 +6,7 @@ import HeaderLogo from '@/components/HeaderLogo';
 import HeaderButtons from '../components/HeaderButtons';
 import MobileMenuButton from '@/components/MobileMenuButton';
 import MobileMenu from '@/components/MobileMenu';
-import { navItems } from '../app/data/navItems';
+import { navItems } from '@/app/data/navItems';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);

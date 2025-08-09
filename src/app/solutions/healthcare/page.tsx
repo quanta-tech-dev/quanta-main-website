@@ -1,7 +1,12 @@
 import React from 'react';
+import UnderConstruction from "@/components/UnderConstructionPage/UnderConstruction";
 
-const HelthCare = () => {
-  return <div>HelthCare</div>;
+const HealthCare = () => {
+    return (
+        <main>
+            <UnderConstruction/>
+        </main>
+    );
 };
 
-export default HelthCare;
+export default HealthCare;

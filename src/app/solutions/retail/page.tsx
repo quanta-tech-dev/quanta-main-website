@@ -1,7 +1,12 @@
 import React from 'react';
+import UnderConstruction from "@/components/UnderConstructionPage/UnderConstruction";
 
 const Retail = () => {
-  return <div>Retail</div>;
+    return (
+        <main>
+            <UnderConstruction/>
+        </main>
+    );
 };
 
 export default Retail;

@@ -1,7 +1,12 @@
 import React from 'react';
+import UnderConstruction from "@/components/UnderConstructionPage/UnderConstruction";
 
 const AboutUs = () => {
-  return <div>AboutUs</div>;
+    return (
+        <main>
+            <UnderConstruction/>
+        </main>
+    );
 };
 
 export default AboutUs;

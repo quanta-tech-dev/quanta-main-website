@@ -14,7 +14,7 @@ export const navItems = [
     href: '/solutions',
     dropdown: [
       { label: 'Retail', href: '/solutions/retail' },
-      { label: 'Helthcare', href: '/solutions/helthcare' },
+      { label: 'Healthcare', href: '/solutions/healthcare' },
       { label: 'Manufacturing', href: '/solutions/manufacturing' },
     ],
   },
@@ -23,7 +23,7 @@ export const navItems = [
     label: 'Resources',
     href: '/resources',
     dropdown: [
-      { label: 'Blog', href: '/resources/blog' },
+      { label: 'Blog', href: '/resources/blogs' },
       { label: 'Case studies', href: '/resources/case-studies' },
       { label: 'Guides', href: '/resources/guides' },
     ],
@@ -32,9 +32,9 @@ export const navItems = [
     label: 'Company',
     href: '/company',
     dropdown: [
-      { label: 'Guides', href: '/resources/guides' },
-      { label: 'Careers', href: '/resources/careers' },
-      { label: 'Team', href: '/resources/team' },
+      { label: 'About Us', href: '/company/about-us' },
+      { label: 'Careers', href: '/company/careers' },
+      { label: 'Team', href: '/company/team' },
     ],
   },
   { label: 'Contact', href: '/contact' },

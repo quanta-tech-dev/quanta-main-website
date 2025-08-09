@@ -1,7 +1,12 @@
 import React from 'react';
+import UnderConstruction from "@/components/UnderConstructionPage/UnderConstruction";
 
 const Team = () => {
-  return <div>Team</div>;
+  return (
+      <main>
+          <UnderConstruction/>
+      </main>
+  );
 };
 
 export default Team;

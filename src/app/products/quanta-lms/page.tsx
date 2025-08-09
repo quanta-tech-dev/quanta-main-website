@@ -1,7 +1,12 @@
 import React from 'react';
+import UnderConstruction from "@/components/UnderConstructionPage/UnderConstruction";
 
 const QuantaLMS = () => {
-  return <div>QuantaLMS</div>;
+    return (
+        <main>
+            <UnderConstruction/>
+        </main>
+    );
 };
 
 export default QuantaLMS;

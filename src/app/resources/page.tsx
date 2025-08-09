@@ -1,7 +1,12 @@
 import React from 'react';
+import UnderConstruction from "@/components/UnderConstructionPage/UnderConstruction";
 
 const Resources = () => {
-  return <div>Resources</div>;
+    return (
+        <main>
+            <UnderConstruction/>
+        </main>
+    );
 };
 
 export default Resources;

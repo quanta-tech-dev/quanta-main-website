@@ -1,7 +1,12 @@
 import React from 'react';
+import UnderConstruction from "@/components/UnderConstructionPage/UnderConstruction";
 
 const Guides = () => {
-  return <div>Guides</div>;
+  return (
+      <main>
+          <UnderConstruction/>
+      </main>
+  );
 };
 
 export default Guides;

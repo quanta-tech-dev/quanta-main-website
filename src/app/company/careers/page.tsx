@@ -1,7 +1,12 @@
 import React from 'react';
+import UnderConstruction from "@/components/UnderConstructionPage/UnderConstruction";
 
 const Careers = () => {
-  return <div>Careers</div>;
+  return (
+      <main>
+          <UnderConstruction/>
+      </main>
+  );
 };
 
 export default Careers;
