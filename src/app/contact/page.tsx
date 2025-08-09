@@ -1,10 +1,22 @@
 import React from 'react';
-import UnderConstruction from "@/components/UnderConstructionPage/UnderConstruction";
+import ContactSection from "@/sections/ContactSection/ContactSection";
+import BreadCrumbs from "@/components/BreadCrumbs/BreadCrumbs";
 
 const Contact = () => {
+    const breadCrumbsItems = [
+        {
+            href: "/",
+            label: "Home",
+        },
+        {
+            href: "/contact",
+            label: "Contact",
+        },
+    ]
     return (
-        <main>
-            <UnderConstruction/>
+        <main className="mt-[1.8rem]">
+            <BreadCrumbs items={breadCrumbsItems}/>
+            <ContactSection/>
         </main>
     );
 };
