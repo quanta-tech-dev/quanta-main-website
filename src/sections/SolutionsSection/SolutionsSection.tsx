@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const SolutionsSection = () => {
     return (
-        <div className="w-full bg-[#EFEAFD] py-[2rem] mt-[1.5rem] sm:mt-[2rem] xl:mt-[3rem]">
+        <div className="w-full bg-[#E3F5FC] py-[2rem] mt-[1.5rem] sm:mt-[2rem] xl:mt-[3rem]">
             <div className="relative flex-1 h-full w-full flex custom-layout">
                 <div className="sm:py-[1.5rem] w-full">
                     <div className="flex w-full justify-between items-start">

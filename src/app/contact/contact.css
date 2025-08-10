@@ -1,0 +1,18 @@
+.custom-page-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    line-height: 2.5rem;
+}
+
+@media (min-width: 640px) {
+    .custom-page-title {
+        font-size: 2rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .custom-page-title {
+        font-size: 2.5rem;
+        line-height: 3rem;
+    }
+}

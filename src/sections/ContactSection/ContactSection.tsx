@@ -1,4 +1,5 @@
 import React from 'react';
+import "./contactSection.css"
 
 const ContactSection = () => {
     return (
@@ -6,9 +7,9 @@ const ContactSection = () => {
             <div className="relative  h-full w-full  custom-layout">
                 <div className="pt-[1.5rem] mb-[3rem]" id="get-free-consult">
                     <div
-                        className="w-full grid grid-cols-12 bg-gradient-to-br from-[#e5e4e8] to-[#d9cef5] relative lg:pb-0 rounded-lg">
+                        className="w-full grid grid-cols-12 bg-gradient-to-br from-[#E3F5FC] to-[#A6DDF5] ] relative lg:pb-0 rounded-lg">
                         <div
-                            className="w-full h-[260px] sm:h-[250px] lg:h-[270px] absolute top-0 z-0 left-0 bg-brandDark flex flex-col justify-center p-6">
+                            className="w-full h-[260px] sm:h-[250px] lg:h-[270px] absolute top-0 z-1 left-0 bg-brandDark flex flex-col justify-center p-6">
                         </div>
                         <div className="col-span-1"></div>
                         <div
