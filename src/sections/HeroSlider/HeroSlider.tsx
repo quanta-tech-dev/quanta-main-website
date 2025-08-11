@@ -20,7 +20,7 @@ const HeroSlider = () => {
         pagination={pagination}
         modules={[Pagination, Autoplay]}
         autoplay={{
-          delay: 3000,
+          delay: 10000,
           disableOnInteraction: false,
         }}
         loop={true}

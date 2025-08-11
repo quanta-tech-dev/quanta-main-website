@@ -7,6 +7,8 @@ export const blogs = [
             "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae eius illo omnis provident veritatis voluptate. Ad aspernatur consequuntur delectus dicta dignissimos doloremque ducimus ea earum eius enim fuga, in ipsa ipsam ipsum minima, nisi nulla numquam officia optio pariatur possimus quibusdam quidem quod repellat saepe sapiente sed, unde ut velit?",
         img: "/images/blogs/blog1.jpg",
         link: "#",
+        slug:"ai and machine learning",
+        tag:"ai",
         primary: true,
     },
     {
@@ -17,6 +19,8 @@ export const blogs = [
             "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae eius illo omnis provident veritatis voluptate. Ad aspernatur consequuntur delectus dicta dignissimos doloremque ducimus ea earum eius enim fuga, in ipsa ipsam ipsum minima, nisi nulla numquam officia optio pariatur possimus quibusdam quidem quod repellat saepe sapiente sed, unde ut velit?",
         img: "/images/blogs/blog2.jpg",
         link: "#",
+        slug:"ai and machine learning",
+        tag:"ai",
         primary: false,
     },
     {
@@ -27,6 +31,8 @@ export const blogs = [
             "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae eius illo omnis provident veritatis voluptate. Ad aspernatur consequuntur delectus dicta dignissimos doloremque ducimus ea earum eius enim fuga, in ipsa ipsam ipsum minima, nisi nulla numquam officia optio pariatur possimus quibusdam quidem quod repellat saepe sapiente sed, unde ut velit?",
         img: "/images/blogs/blog3.jpg",
         link: "#",
+        slug:"ai and machine learning",
+        tag:"ai",
         primary: false,
     },
     {
@@ -37,6 +43,8 @@ export const blogs = [
             "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae eius illo omnis provident veritatis voluptate. Ad aspernatur consequuntur delectus dicta dignissimos doloremque ducimus ea earum eius enim fuga, in ipsa ipsam ipsum minima, nisi nulla numquam officia optio pariatur possimus quibusdam quidem quod repellat saepe sapiente sed, unde ut velit?",
         img: "/images/blogs/blog3.jpg",
         link: "#",
+        slug:"ai and machine learning",
+        tag:"ai",
         primary: false,
     },
     {
@@ -47,6 +55,8 @@ export const blogs = [
             "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae eius illo omnis provident veritatis voluptate. Ad aspernatur consequuntur delectus dicta dignissimos doloremque ducimus ea earum eius enim fuga, in ipsa ipsam ipsum minima, nisi nulla numquam officia optio pariatur possimus quibusdam quidem quod repellat saepe sapiente sed, unde ut velit?",
         img: "/images/blogs/blog3.jpg",
         link: "#",
+        slug:"ai and machine learning",
+        tag:"ai",
         primary: false,
     },
 ];
