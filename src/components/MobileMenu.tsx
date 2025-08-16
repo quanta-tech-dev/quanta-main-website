@@ -1,6 +1,7 @@
 import React from 'react';
 import LangButton from './LangButton/LangButton';
 import Link from 'next/link';
+import Image from "next/image";
 
 interface MenuProps {
   mobileMenuOpen: boolean;
@@ -39,8 +40,8 @@ const MobileMenu: React.FC<MenuProps> = ({
   return (
     <div
       className={`
-    fixed inset-0 z-40 bg-white shadow-lg transform transition-transform duration-300 ease-in-out md:hidden
-    ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'} mt-16
+    fixed inset-0 z-40 bg-white shadow-lg transform transition-transform duration-300 ease-in-out lg:hidden
+    ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'} mt-20
   `}
     >
       <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-gray-200">
@@ -104,9 +105,11 @@ const MobileMenu: React.FC<MenuProps> = ({
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img
+            <Image
               src="/whatsapp.png"
               alt="WhatsApp"
+              width={24}
+              height={24}
               className="w-8 h-8 cursor-pointer transition-transform duration-300 hover:scale-110"
             />
           </a>

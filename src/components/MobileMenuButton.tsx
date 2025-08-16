@@ -10,7 +10,7 @@ const MobileMenuButton: React.FC<MenuButtonProps> = ({
   setMobileMenuOpen,
 }) => {
   return (
-    <div className="md:hidden">
+    <div className="lg:hidden">
       <button
         type="button"
         className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-purple-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-200"

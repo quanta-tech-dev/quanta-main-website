@@ -22,7 +22,7 @@ interface DesktopNavrops {
 
 const DesktopNav: React.FC<DesktopNavrops> = ({ navItems }) => {
   return (
-    <nav className="hidden md:flex space-x-8">
+    <nav className="hidden lg:flex space-x-8">
       {navItems.map((item) => (
         <div key={item.label} className="relative">
           {item.dropdown ? (
