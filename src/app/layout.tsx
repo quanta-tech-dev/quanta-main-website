@@ -1,8 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter_Tight } from 'next/font/google';
 import './globals.css';
-import Footer from '@/sections/Footer';
-import Header from '@/sections/Header';
 
 const interTight = Inter_Tight({
   subsets: ['latin'],
@@ -22,9 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${interTight.className}  antialiased`}>
-        <Header />
         {children}
-        <Footer />
       </body>
     </html>
   );
