@@ -20,7 +20,7 @@ const HeaderButtons: React.FC<LangButtonProps> = ({ lang, setLang }) => {
           alt="WhatsApp"
           width={24}
           height={24}
-          className="w-8 h-8 cursor-pointer transition-transform duration-300 hover:scale-110"
+          className="w-9 h-9 cursor-pointer transition-transform duration-300 hover:scale-110"
         />
       </a>
       <LangButton lang={lang} setLang={setLang} />

@@ -10,8 +10,8 @@ const ProductsSection = () => {
                 <div className="sm:py-[1.5rem] w-full">
                     <div className="grid grid-cols-12 gap-3 xl:gap-6 w-full">
                         <Link
-                            className="col-span-12 sm:col-span-4 relative justify-center p-[1rem] xl:p-[3rem] rounded-[1rem] hover:bg-[#faf8ff] transition-colors duration-300 transform"
-                            href="/solutions/retail">
+                            className="col-span-12 sm:col-span-4 relative justify-center p-[1rem] xl:p-[3rem] rounded-[1rem] hover:bg-[#e7f6fe] transition-colors duration-300 transform"
+                            href="/products/quanta-erp">
                             <div className="relative text-center flex flex-col gap-2 lg:gap-4 items-center">
                                 <Image
                                     src="/images/solutions/shadow.png"
@@ -22,7 +22,7 @@ const ProductsSection = () => {
                                 />
                                 <div className="relative">
                                     <Image
-                                        src="/images/solutions/retail.svg"
+                                        src="/images/products/erp.svg"
                                         alt="Quanta ERP"
                                         width={100}
                                         height={100}
@@ -45,8 +45,8 @@ const ProductsSection = () => {
                             </div>
                         </Link>
                         <Link
-                            className="col-span-12 sm:col-span-4 relative justify-center p-[1rem] xl:p-[3rem] rounded-[1rem] hover:bg-[#faf8ff] transition-colors duration-300 transform"
-                            href="/solutions/healthcare">
+                            className="col-span-12 sm:col-span-4 relative justify-center p-[1rem] xl:p-[3rem] rounded-[1rem] hover:bg-[#e7f6fe] transition-colors duration-300 transform"
+                            href="/products/quanta-bi">
                             <div className="relative text-center flex flex-col gap-2 lg:gap-4 items-center">
                                 <Image
                                     src="/images/solutions/shadow.png"
@@ -57,7 +57,7 @@ const ProductsSection = () => {
                                 />
                                 <div className="relative">
                                     <Image
-                                        src="/images/solutions/helthcare.svg"
+                                        src="/images/products/bi.svg"
                                         alt="Quanta BI"
                                         width={100}
                                         height={100}
@@ -78,8 +78,8 @@ const ProductsSection = () => {
                                 </p>
                             </div>
                         </Link>
-                        <Link href={"/solutions/manufacturing"}
-                              className="col-span-12 sm:col-span-4 relative justify-center p-[1rem] xl:p-[3rem] rounded-[1rem] hover:bg-[#faf8ff] transition-colors duration-300 transform">
+                        <Link href={"/products/quanta-lms"}
+                              className="col-span-12 sm:col-span-4 relative justify-center p-[1rem] xl:p-[3rem] rounded-[1rem] hover:bg-[#e7f6fe] transition-colors duration-300 transform">
                             <div className="relative text-center flex flex-col gap-2 lg:gap-4 items-center">
                                 <Image
                                     src="/images/solutions/shadow.png"
@@ -90,7 +90,7 @@ const ProductsSection = () => {
                                 />
                                 <div className="relative">
                                     <Image
-                                        src="/images/solutions/manufacturing.svg"
+                                        src="/images/products/lms.svg"
                                         alt="Quanta LMS"
                                         loading="lazy"
                                         width={100}

@@ -39,7 +39,7 @@ const HeroSlider = () => {
                 <a href="#get-free-consult">
                   <button
                     type="button"
-                    className="inline-flex w-full disabled:opacity-80 hover:opacity-95 items-center justify-center text-sm text-white bg-primary rounded-md py-[0.4rem] px-[0.8rem] lg:py-[0.5rem] lg:px-[1.2rem] xl:py-[0.7rem] xl:px-[1.75rem] focus:outline-none whitespace-nowrap transition-colors duration-300 transform !w-auto mx-auto mb-[0.25rem] font-semibold bg-[#602BE9] text-[#FFF] hover:bg-black"
+                    className="inline-flex w-full disabled:opacity-80 items-center justify-center text-sm text-white rounded-md py-[0.4rem] px-[0.8rem] lg:py-[0.5rem] lg:px-[1.2rem] xl:py-[0.7rem] xl:px-[1.75rem] focus:outline-none whitespace-nowrap transition-all duration-400 transform !w-auto mx-auto mb-[0.25rem] font-semibold bg-gradient-to-r from-[#098FD7] via-[#40d4f7] to-[#027bbd] bg-[length:300%_100%] hover:bg-[position:100%_0] shadow-[0_4px_15px_0_rgba(9,143,215,0.75)]"
                   >
                     Get Free Consultation
                   </button>
@@ -84,7 +84,7 @@ const HeroSlider = () => {
                 <a href="/case-study/freshair">
                   <button
                     type="button"
-                    className="inline-flex w-full disabled:opacity-80 hover:opacity-95 items-center justify-center text-sm text-white bg-primary rounded-md py-[0.4rem] px-[0.8rem] lg:py-[0.5rem] lg:px-[1.2rem] xl:py-[0.7rem] xl:px-[1.75rem] focus:outline-none whitespace-nowrap transition-colors duration-300 transform !w-auto mx-auto mb-[0.25rem] font-semibold bg-[#602BE9] text-[#FFF] hover:bg-black"
+                    className="inline-flex w-full disabled:opacity-80 items-center justify-center text-sm text-white rounded-md py-[0.4rem] px-[0.8rem] lg:py-[0.5rem] lg:px-[1.2rem] xl:py-[0.7rem] xl:px-[1.75rem] focus:outline-none whitespace-nowrap transition-all duration-400 transform !w-auto mx-auto mb-[0.25rem] font-semibold bg-gradient-to-r from-[#098FD7] via-[#40d4f7] to-[#027bbd] bg-[length:300%_100%] hover:bg-[position:100%_0] shadow-[0_4px_15px_0_rgba(9,143,215,0.75)]"
                   >
                     Read More
                   </button>
@@ -124,7 +124,7 @@ const HeroSlider = () => {
                 <a href="#get-free-consult">
                   <button
                     type="button"
-                    className="inline-flex w-full disabled:opacity-80 hover:opacity-95 items-center justify-center text-sm text-white bg-primary rounded-md py-[0.4rem] px-[0.8rem] lg:py-[0.5rem] lg:px-[1.2rem] xl:py-[0.7rem] xl:px-[1.75rem] focus:outline-none whitespace-nowrap transition-colors duration-300 transform !w-auto mx-auto mb-[0.25rem] font-semibold bg-[#602BE9] text-[#FFF] hover:bg-black"
+                    className="inline-flex w-full disabled:opacity-80 items-center justify-center text-sm text-white rounded-md py-[0.4rem] px-[0.8rem] lg:py-[0.5rem] lg:px-[1.2rem] xl:py-[0.7rem] xl:px-[1.75rem] focus:outline-none whitespace-nowrap transition-all duration-400 transform !w-auto mx-auto mb-[0.25rem] font-semibold bg-gradient-to-r from-[#098FD7] via-[#40d4f7] to-[#027bbd] bg-[length:300%_100%] hover:bg-[position:100%_0] shadow-[0_4px_15px_0_rgba(9,143,215,0.75)]"
                   >
                     Get Free Consultation
                   </button>
