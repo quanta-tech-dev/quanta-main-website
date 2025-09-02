@@ -23,7 +23,7 @@ export const navItems = [
     label: 'Resources',
     href: '/resources',
     dropdown: [
-      { label: 'Blog', href: '/resources/blogs' },
+      { label: 'Blogs', href: '/resources/blogs' },
       { label: 'Case studies', href: '/resources/case-studies' },
       { label: 'Guides', href: '/resources/guides' },
     ],

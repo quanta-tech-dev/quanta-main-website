@@ -9,8 +9,17 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@editorjs/editorjs": "^2.30.8",
+    "@editorjs/header": "^2.8.8",
+    "@editorjs/image": "^2.10.3",
+    "@editorjs/list": "^2.0.8",
+    "@editorjs/paragraph": "^2.11.7",
     "@fullcalendar/core": "^6.1.19",
+    "@prisma/client": "^6.15.0",
+    "@types/pg": "^8.15.5",
     "next": "15.3.5",
+    "pg": "^8.16.3",
+    "prisma": "^6.15.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "swiper": "^11.2.10"
