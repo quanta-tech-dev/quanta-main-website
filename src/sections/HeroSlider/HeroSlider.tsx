@@ -1,5 +1,6 @@
 'use client';
 import React from 'react';
+import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -49,13 +50,10 @@ const HeroSlider = () => {
                 </p>
               </div>
               <div className="slide-img lg:w-6/12 md:w-full">
-                <img
+                <Image
                   alt="cover image"
-                  loading="lazy"
-                  width="1540"
-                  height="1016"
-                  decoding="async"
-                  data-nimg="1"
+                  width={1540}
+                  height={1016}
                   src="/images/slider/home_banner3.jpg"
                 />
               </div>
@@ -91,13 +89,10 @@ const HeroSlider = () => {
                 </a>
               </div>
               <div className="slide-img lg:w-6/12 md:w-full">
-                <img
+                <Image
                   alt="cover image"
-                  loading="lazy"
-                  width="1540"
-                  height="1016"
-                  decoding="async"
-                  data-nimg="1"
+                  width={1540}
+                  height={1016}
                   src="/images/slider/home_banner1.jpg"
                 />
               </div>
@@ -134,13 +129,10 @@ const HeroSlider = () => {
                 </p>
               </div>
               <div className="slide-img lg:w-6/12 md:w-full">
-                <img
+                <Image
                   alt="cover image"
-                  loading="lazy"
-                  width="770"
-                  height="508"
-                  decoding="async"
-                  data-nimg="1"
+                  width={770}
+                  height={508}
                   src="/images/slider/home_banner2.png"
                 />
               </div>

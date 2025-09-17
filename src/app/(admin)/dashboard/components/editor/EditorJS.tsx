@@ -38,25 +38,29 @@ const EditorJSComponent: React.FC<EditorJSComponentProps> = ({
       },
       tools: {
         header: {
-          class: Header,
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          class: Header as any,
           config: {
             levels: [1, 2, 3, 4, 5, 6],
             defaultLevel: 2,
           },
         },
         list: {
-          class: List,
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          class: List as any,
           inlineToolbar: true,
           config: {
             defaultStyle: 'unordered'
           }
         },
         paragraph: {
-          class: Paragraph,
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          class: Paragraph as any,
           inlineToolbar: true,
         },
         image: {
-          class: Image,
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          class: Image as any,
           config: {
             endpoints: {
               byFile: '/api/upload-image',

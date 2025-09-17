@@ -4,11 +4,12 @@ import { prisma } from '@/lib/prisma';
 // GET - Fetch single blog
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const blog = await prisma.blog.findUnique({
-      where: { id: params.id }
+      where: { id }
     });
 
     if (!blog) {
@@ -31,9 +32,10 @@ export async function GET(
 // PUT - Update blog
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const body = await request.json();
     const { title, content, excerpt, coverImage, tags, featured, published } = body;
 
@@ -45,7 +47,7 @@ export async function PUT(
     }
 
     // Generate new slug if title changed
-    let updateData: any = {
+    const updateData: Record<string, unknown> = {
       title,
       content,
       excerpt: excerpt || null,
@@ -61,7 +63,7 @@ export async function PUT(
 
     // Check if title changed to update slug
     const existingBlog = await prisma.blog.findUnique({
-      where: { id: params.id },
+      where: { id },
       select: { title: true }
     });
 
@@ -76,7 +78,7 @@ export async function PUT(
     }
 
     const blog = await prisma.blog.update({
-      where: { id: params.id },
+      where: { id },
       data: updateData
     });
 
@@ -93,11 +95,12 @@ export async function PUT(
 // DELETE - Delete blog
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     await prisma.blog.delete({
-      where: { id: params.id }
+      where: { id }
     });
 
     return NextResponse.json({ success: true, message: 'Blog deleted successfully' });

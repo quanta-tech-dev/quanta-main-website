@@ -58,7 +58,7 @@ export async function POST(request: NextRequest) {
       .replace(/-+/g, '-')
       .trim('-');
 
-    const blogData: any = {
+    const blogData: Record<string, unknown> = {
       title,
       content,
       excerpt: excerpt || null,
@@ -74,7 +74,8 @@ export async function POST(request: NextRequest) {
     }
 
     const blog = await prisma.blog.create({
-      data: blogData
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      data: blogData as any
     });
 
     return NextResponse.json({ success: true, data: blog }, { status: 201 });

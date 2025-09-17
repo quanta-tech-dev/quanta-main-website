@@ -1,6 +1,7 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface Blog {
   id: string;
@@ -160,9 +161,11 @@ const BlogsPage = () => {
                         {/* Cover Image */}
                         {blog.coverImage ? (
                           <div className="flex-shrink-0">
-                            <img
+                            <Image
                               src={blog.coverImage}
                               alt={blog.title}
+                              width={96}
+                              height={96}
                               className="w-24 h-24 object-cover rounded-lg border"
                             />
                           </div>

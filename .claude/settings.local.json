@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:nextjs-demo.tailadmin.com)",
+      "Bash(npm install:*)",
+      "Bash(npx prisma:*)",
+      "Bash(grep:*)",
+      "Bash(rm:*)",
+      "Bash(npm run build:*)",
+      "Bash(lsof:*)",
+      "Bash(node:*)",
+      "Bash(curl:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

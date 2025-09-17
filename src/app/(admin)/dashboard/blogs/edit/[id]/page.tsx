@@ -1,8 +1,14 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import { useRouter, useParams } from 'next/navigation';
+import Image from 'next/image';
+import dynamic from 'next/dynamic';
 import { OutputData } from '@editorjs/editorjs';
-import EditorJSComponent from '../../../components/editor/EditorJS';
+
+const EditorJSComponent = dynamic(() => import('../../../components/editor/EditorJS'), {
+  ssr: false,
+  loading: () => <div className="min-h-[400px] bg-gray-50 rounded-lg animate-pulse flex items-center justify-center">Loading editor...</div>
+});
 
 interface Blog {
   id: string;
@@ -269,9 +275,11 @@ const EditBlogPage = () => {
                 )}
                 {formData.coverImage && (
                   <div className="relative">
-                    <img
+                    <Image
                       src={formData.coverImage}
                       alt="Cover preview"
+                      width={800}
+                      height={192}
                       className="w-full h-48 object-cover rounded-lg border"
                     />
                     <button

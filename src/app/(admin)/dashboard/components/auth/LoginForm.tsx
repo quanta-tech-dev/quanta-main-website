@@ -41,7 +41,8 @@ const LoginForm = () => {
       } else {
         setError(data.message || 'Login failed');
       }
-    } catch (err) {
+    } catch (error) {
+      console.error('Login error:', error);
       setError('Network error. Please try again.');
     } finally {
       setIsLoading(false);

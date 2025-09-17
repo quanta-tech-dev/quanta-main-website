@@ -1,6 +1,7 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import { useRouter, useParams } from 'next/navigation';
+import Image from 'next/image';
 import { OutputData } from '@editorjs/editorjs';
 
 interface Blog {
@@ -61,7 +62,7 @@ const BlogPreviewPage = () => {
     return content.blocks.map((block, index) => {
       switch (block.type) {
         case 'header':
-          const HeaderTag = `h${block.data.level}` as keyof JSX.IntrinsicElements;
+          const HeaderTag = `h${block.data.level}` as keyof React.JSX.IntrinsicElements;
           return (
             <HeaderTag
               key={index}
@@ -101,9 +102,11 @@ const BlogPreviewPage = () => {
         case 'image':
           return (
             <div key={index} className="mb-6">
-              <img
+              <Image
                 src={block.data.file.url}
                 alt={block.data.caption || 'Blog image'}
+                width={800}
+                height={400}
                 className="max-w-full h-auto rounded-lg shadow-md"
               />
               {block.data.caption && (
@@ -209,9 +212,11 @@ const BlogPreviewPage = () => {
             {/* Cover Image */}
             {blog.coverImage && (
               <div className="mb-6">
-                <img
+                <Image
                   src={blog.coverImage}
                   alt={blog.title}
+                  width={800}
+                  height={256}
                   className="w-full h-64 object-cover rounded-lg shadow-md"
                 />
               </div>
