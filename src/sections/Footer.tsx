@@ -51,18 +51,16 @@ const Footer = () => {
 
   return (
     <footer className="text-white w-full relative overflow-hidden">
-      {/* Background with gradient and pattern */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#100833] via-[#0a0a20] to-[#1a1a4a]"></div>
-      <div
-        className="absolute inset-0 opacity-20"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23098FD7' fill-opacity='0.2'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-        }}
-      ></div>
-
       {/* Main content */}
-      <section className="relative z-10">
-        <div className="custom-layout">
+      <section className="relative z-10 bg-gradient-to-br from-[#100833] via-[#0a0a20] to-[#1a1a4a] overflow-hidden">
+        {/* Background pattern */}
+        <div
+          className="absolute inset-0 opacity-20"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23098FD7' fill-opacity='0.2'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+          }}
+        ></div>
+        <div className="custom-layout relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -231,7 +229,7 @@ const Footer = () => {
       </section>
 
       {/* Bottom Section */}
-      <section className="text-black bg-white bg-opacity-95 relative z-10">
+      <section className="text-black bg-white relative z-10">
         <div className="custom-layout">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
