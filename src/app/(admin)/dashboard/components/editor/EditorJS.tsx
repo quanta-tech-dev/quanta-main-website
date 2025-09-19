@@ -93,7 +93,7 @@ const EditorJSComponent: React.FC<EditorJSComponentProps> = ({
         }
       }
     };
-  }, [data, placeholder]); // Include data in deps but clear container first
+  }, [data, placeholder, onChange]);
 
   return (
     <div className="border border-gray-300 rounded-lg p-4 min-h-[400px] bg-white">
