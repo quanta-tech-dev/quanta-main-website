@@ -54,7 +54,8 @@
 
 .swiper-pagination-bullet-active {
   color: #fff;
-  background: #602be9;
+  background: linear-gradient(135deg, #098FD7 0%, #40d4f7 50%, #027bbd 100%);
+  box-shadow: 0 2px 8px rgba(9, 143, 215, 0.4);
 }
 
 .slide-text {

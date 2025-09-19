@@ -37,7 +37,7 @@ const ProductsSection = () => {
                                              xmlns="http://www.w3.org/2000/svg">
                                             <path
                                                 d="M8.46975 12.9697L9.53025 14.0302L14.5605 8.99998L9.53025 3.96973L8.46975 5.03023L11.6895 8.24998H4.5V9.74998H11.6895L8.46975 12.9697Z"
-                                                fill="#602BE9">
+                                                fill="#098FD7">
                                             </path>
                                         </svg>
                                     </span>
@@ -72,7 +72,7 @@ const ProductsSection = () => {
                                          xmlns="http://www.w3.org/2000/svg">
                                         <path
                                             d="M8.46975 12.9697L9.53025 14.0302L14.5605 8.99998L9.53025 3.96973L8.46975 5.03023L11.6895 8.24998H4.5V9.74998H11.6895L8.46975 12.9697Z"
-                                            fill="#602BE9"></path>
+                                            fill="#098FD7"></path>
                                     </svg>
                                 </span>
                                 </p>
@@ -107,7 +107,7 @@ const ProductsSection = () => {
                                          xmlns="http://www.w3.org/2000/svg">
                                         <path
                                             d="M8.46975 12.9697L9.53025 14.0302L14.5605 8.99998L9.53025 3.96973L8.46975 5.03023L11.6895 8.24998H4.5V9.74998H11.6895L8.46975 12.9697Z"
-                                            fill="#602BE9"></path>
+                                            fill="#098FD7"></path>
                                     </svg>
                                 </span>
                                 </p>

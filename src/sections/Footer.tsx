@@ -174,17 +174,17 @@ const Footer = () => {
             <div className="flex sm:flex-row flex-col justify-center items-center py-4 gap-3  sm:gap-12">
               <div className="text-base text-brandDark">
                 Copyright © 2025{' '}
-                <span className="text-[#602BE9]">Quanta Tech.</span>
+                <span className="text-[#098FD7]">Quanta Tech.</span>
               </div>
               <div className="text-base text-brandDark">
-                <a target="_blank" href="#">
+                <Link href="/privacy/terms">
                   <span>Terms &amp; Conditions</span>
-                </a>
+                </Link>
               </div>
               <div className="text-base text-brandDark">
-                <a target="_blank" href="#">
+                <Link href="/privacy/policy">
                   <span>Privacy Policy</span>
-                </a>
+                </Link>
               </div>
             </div>
             <div className="flex items-center gap-4 sm:gap-8 mx-auto sm:mx-0">
@@ -192,7 +192,7 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex flex-col gap-2 items-center text-xs sm:text-sm text-customGray-500"
-                href="#"
+                href="https://www.linkedin.com/company/quanta-tech-az/"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -279,29 +279,6 @@ const Footer = () => {
                   ></path>
                 </svg>
                 Twitter{' '}
-              </a>
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex flex-col gap-2 items-center text-xs sm:text-sm text-customGray-500"
-                href="#"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  aria-hidden="true"
-                  role="img"
-                  className="w-7 h-7 text-customGray-800 iconify iconify--mdi"
-                  fontSize=""
-                  width="1em"
-                  height="1em"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    fill="currentColor"
-                    d="m10 15l5.19-3L10 9zm11.56-7.83c.13.47.22 1.1.28 1.9c.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83c-.25.9-.83 1.48-1.73 1.73c-.47.13-1.33.22-2.65.28c-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44c-.9-.25-1.48-.83-1.73-1.73c-.13-.47-.22-1.1-.28-1.9c-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83c.25-.9.83-1.48 1.73-1.73c.47-.13 1.33-.22 2.65-.28c1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44c.9.25 1.48.83 1.73 1.73"
-                  ></path>
-                </svg>
-                You tube{' '}
               </a>
             </div>
           </div>
