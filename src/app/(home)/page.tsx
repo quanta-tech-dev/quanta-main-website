@@ -1,3 +1,5 @@
+'use client';
+import { motion } from 'framer-motion';
 import HeroSlider from '@/sections/HeroSlider/HeroSlider';
 import SolutionsSection from '@/sections/SolutionsSection/SolutionsSection';
 import {BlogsSection} from "@/sections/BlogsSection/BlogsSection";
@@ -7,11 +9,45 @@ import ContactSection from "@/sections/ContactSection/ContactSection";
 export default function Home() {
     return (
         <main>
-            <HeroSlider/>
-            <ProductsSection/>
-            <SolutionsSection/>
-            <BlogsSection/>
-            <ContactSection/>
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+            >
+                <HeroSlider/>
+            </motion.div>
+            <motion.div
+                initial={{ opacity: 0, y: 60 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+            >
+                <ProductsSection/>
+            </motion.div>
+            <motion.div
+                initial={{ opacity: 0, y: 60 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+            >
+                <SolutionsSection/>
+            </motion.div>
+            <motion.div
+                initial={{ opacity: 0, y: 60 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+            >
+                <BlogsSection/>
+            </motion.div>
+            <motion.div
+                initial={{ opacity: 0, y: 60 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+            >
+                <ContactSection/>
+            </motion.div>
         </main>
     );
 }
