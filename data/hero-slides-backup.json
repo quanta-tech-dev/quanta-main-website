@@ -1,0 +1,41 @@
+[
+  {
+    "id": "1",
+    "title": "Our AI consulting helps you save time and money.",
+    "description": "AI isn't a one-size-fits-all fix. Get our free AI consultation to understand the need for AI to solve your problem.",
+    "image": "/images/slider/home_banner3.jpg",
+    "buttonText": "Get Free Consultation",
+    "buttonLink": "#get-free-consult",
+    "subtext": "No tricks, just friendly advice.",
+    "order": 1,
+    "active": true,
+    "createdAt": "2025-09-20T00:00:00.000Z",
+    "updatedAt": "2025-09-20T10:12:36.818Z"
+  },
+  {
+    "id": "2",
+    "title": "Breathe Easy - We Helped FreshAir Cut False Alarms by 80%",
+    "description": "AI-powered anomaly detection turned noisy IoT data into clear, actionable insight — unlocking faster response times, smarter scaling, and real peace of mind.",
+    "image": "/images/slider/home_banner1.jpg",
+    "buttonText": "Read More",
+    "buttonLink": "/case-study/freshair",
+    "subtext": "",
+    "order": 2,
+    "active": true,
+    "createdAt": "2025-09-20T00:00:00.000Z",
+    "updatedAt": "2025-09-20T00:00:00.000Z"
+  },
+  {
+    "id": "3",
+    "title": "1M+ YouTube Subscribers 200+ Businesses Consulted 15+ Years in Data & Product",
+    "description": "Work with a team led by Dhaval Patel, AtliQ's co-founder and data industry veteran with 15+ years of transformative experience.",
+    "image": "/images/slider/home_banner2.png",
+    "buttonText": "Get Free Consultation",
+    "buttonLink": "#get-free-consult",
+    "subtext": "No tricks, just friendly advice.",
+    "order": 3,
+    "active": true,
+    "createdAt": "2025-09-20T00:00:00.000Z",
+    "updatedAt": "2025-09-20T00:00:00.000Z"
+  }
+]

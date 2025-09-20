@@ -31,3 +31,19 @@ model Blog {
 
   @@map("blogs")
 }
+
+model HeroSlide {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  image       String
+  buttonText  String
+  buttonLink  String
+  subtext     String?
+  order       Int      @default(1)
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("hero_slides")
+}

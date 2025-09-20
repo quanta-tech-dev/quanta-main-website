@@ -35,7 +35,11 @@ export async function POST(request: NextRequest) {
 
     // Create unique filename
     const fileName = `${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.-]/g, '')}`;
-    const uploadDir = path.join(process.cwd(), 'public', 'uploads', 'blog-images');
+
+    // Determine upload directory based on usage
+    const isSliderImage = request.headers.get('x-upload-type') === 'slider';
+    const uploadSubDir = isSliderImage ? 'slider-images' : 'blog-images';
+    const uploadDir = path.join(process.cwd(), 'public', 'uploads', uploadSubDir);
     const filePath = path.join(uploadDir, fileName);
 
     // Create directory if it doesn't exist
@@ -48,7 +52,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       success: 1,
       file: {
-        url: `/uploads/blog-images/${fileName}`,
+        url: `/uploads/${uploadSubDir}/${fileName}`,
         name: fileName,
         size: file.size
       }
