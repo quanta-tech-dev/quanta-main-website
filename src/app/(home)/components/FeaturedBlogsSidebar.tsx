@@ -25,10 +25,11 @@ const FeaturedBlogsSidebar = () => {
         const data = await response.json();
 
         if (data.success) {
-          // Filter featured blogs and limit to 5
+          // Filter featured blogs, sort by latest first, and limit to 4
           const featured = data.data
             .filter((blog: Blog) => blog.featured)
-            .slice(0, 5);
+            .sort((a: Blog, b: Blog) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+            .slice(0, 4);
           setFeaturedBlogs(featured);
         }
       } catch (error) {

@@ -1,11 +1,11 @@
 'use client';
 
 import { useState } from 'react';
-import DesktopNav from '@/components/DesktopNav';
-import HeaderLogo from '@/components/HeaderLogo';
-import HeaderButtons from '../components/HeaderButtons';
-import MobileMenuButton from '@/components/MobileMenuButton';
-import MobileMenu from '@/components/MobileMenu';
+import DesktopNav from '@/app/(home)/components/DesktopNav';
+import HeaderLogo from '@/app/(home)/components/HeaderLogo';
+import HeaderButtons from '@/app/(home)/components/HeaderButtons';
+import MobileMenuButton from '@/app/(home)/components/MobileMenuButton';
+import MobileMenu from '@/app/(home)/components/MobileMenu';
 import { navItems } from '@/app/data/navItems';
 
 export default function Header() {

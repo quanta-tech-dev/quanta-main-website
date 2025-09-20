@@ -6,7 +6,7 @@ const UnderConstruction = () => {
     return (
         <section>
             <div className="min-h-screen flex flex-col  items-center pt-8">
-                <Link href="/">
+                <Link href="/public">
                     <Image
                         src="/logo.svg"
                         alt="Quanta Logo"
@@ -20,7 +20,7 @@ const UnderConstruction = () => {
                 <p className="text-center text-gray-600  text-lg md:text-xl lg:text-2xl mb-8">Sorry
                     for the inconvenience. We’re performing some maintenance at the moment.</p>
                 <div className="flex space-x-4">
-                    <Link href="/"
+                    <Link href="/public"
                        className="inline-flex items-center border border-indigo-300 px-3 py-1.5 rounded-md hover:bg-indigo-50"
                           style={{ color: "#027bbd", borderColor: "#027bbd" }}>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"

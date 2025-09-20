@@ -1,5 +1,5 @@
 import React from 'react';
-import UnderConstruction from "@/components/UnderConstructionPage/UnderConstruction";
+import UnderConstruction from "@/app/(home)/components/UnderConstructionPage/UnderConstruction";
 
 const Manufacturing = () => {
   return (

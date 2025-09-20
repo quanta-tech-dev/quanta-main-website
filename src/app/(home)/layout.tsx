@@ -1,5 +1,5 @@
-import Footer from '@/sections/Footer';
-import Header from '@/sections/Header';
+import Footer from '@/app/(home)/sections/Footer';
+import Header from '@/app/(home)/sections/Header';
 
 
 export default function HomeLayout({

@@ -1,10 +1,10 @@
 'use client';
 import { motion } from 'framer-motion';
-import HeroSlider from '@/sections/HeroSlider/HeroSlider';
-import SolutionsSection from '@/sections/SolutionsSection/SolutionsSection';
-import {BlogsSection} from "@/sections/BlogsSection/BlogsSection";
-import ProductsSection from "@/sections/ProductsSection/ProductsSection";
-import ContactSection from "@/sections/ContactSection/ContactSection";
+import HeroSlider from '@/app/(home)/sections/HeroSlider/HeroSlider';
+import SolutionsSection from '@/app/(home)/sections/SolutionsSection/SolutionsSection';
+import {BlogsSection} from "@/app/(home)/sections/BlogsSection/BlogsSection";
+import ProductsSection from "@/app/(home)/sections/ProductsSection/ProductsSection";
+import ContactSection from "@/app/(home)/sections/ContactSection/ContactSection";
 
 export default function Home() {
     return (

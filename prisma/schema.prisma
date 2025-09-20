@@ -29,7 +29,36 @@ model Blog {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
+  // Relations
+  blogViews   BlogView[]
+  blogLikes   BlogLike[]
+
   @@map("blogs")
+}
+
+model BlogView {
+  id        String   @id @default(cuid())
+  blogId    String
+  ipAddress String
+  userAgent String?
+  createdAt DateTime @default(now())
+
+  blog Blog @relation(fields: [blogId], references: [id], onDelete: Cascade)
+
+  @@unique([blogId, ipAddress])
+  @@map("blog_views")
+}
+
+model BlogLike {
+  id        String   @id @default(cuid())
+  blogId    String
+  ipAddress String
+  userAgent String?
+  createdAt DateTime @default(now())
+
+  blog Blog @relation(fields: [blogId], references: [id], onDelete: Cascade)
+
+  @@map("blog_likes")
 }
 
 model HeroSlide {

@@ -1,10 +1,10 @@
 'use client';
 import React, { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
-import BreadCrumbs from "@/components/BreadCrumbs/BreadCrumbs";
+import BreadCrumbs from "@/app/(home)/components/BreadCrumbs/BreadCrumbs";
 import Image from "next/image";
 import Link from "next/link";
-import BlogSideBar from "@/components/BlogSideBar";
+import BlogSideBar from "@/app/(home)/components/BlogSideBar";
 import { getRelativeTime, calculateReadingTime } from '@/lib/timeUtils';
 
 interface Blog {

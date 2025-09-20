@@ -1,10 +1,10 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import { useRouter, useParams } from 'next/navigation';
-import BreadCrumbs from "@/components/BreadCrumbs/BreadCrumbs";
+import BreadCrumbs from "@/app/(home)/components/BreadCrumbs/BreadCrumbs";
 import Image from "next/image";
-import FeaturedBlogsSidebar from "@/components/FeaturedBlogsSidebar";
-import EditorJSRenderer from "@/components/EditorJSRenderer";
+import FeaturedBlogsSidebar from "@/app/(home)/components/FeaturedBlogsSidebar";
+import EditorJSRenderer from "@/app/(home)/components/EditorJSRenderer";
 import { getRelativeTime, calculateReadingTime } from '@/lib/timeUtils';
 import { OutputData } from '@editorjs/editorjs';
 
@@ -31,7 +31,8 @@ const BlogPage = () => {
 
   const [blog, setBlog] = useState<Blog | null>(null);
   const [loading, setLoading] = useState(true);
-  const [liked, setLiked] = useState(false);
+  const [likesFromThisIP, setLikesFromThisIP] = useState(0);
+  const [canLike, setCanLike] = useState(true);
 
 
   useEffect(() => {
@@ -45,8 +46,9 @@ const BlogPage = () => {
           const foundBlog = data.data.find((b: Blog) => b.slug === slug);
           if (foundBlog) {
             setBlog(foundBlog);
-            // Increment view count
-            incrementViews(foundBlog.id);
+            // Increment view count and get like status
+            await incrementViews(foundBlog.id);
+            await getLikeStatus(foundBlog.id);
           } else {
             router.push('/resources/blogs');
           }
@@ -66,22 +68,76 @@ const BlogPage = () => {
 
   const incrementViews = async (blogId: string) => {
     try {
-      // This would require a new API endpoint for incrementing views
-      // For now, we'll skip this implementation
-      console.log('Would increment views for blog:', blogId);
+      const response = await fetch(`/api/blogs/${blogId}/view`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      const data = await response.json();
+      if (data.success && data.views) {
+        // Update the blog views count
+        setBlog(prev => prev ? { ...prev, views: data.views } : null);
+      }
     } catch (error) {
       console.error('Error incrementing views:', error);
     }
   };
 
+  const getLikeStatus = async (blogId: string) => {
+    try {
+      const response = await fetch(`/api/blogs/${blogId}/like`);
+      const data = await response.json();
+
+      if (data.success) {
+        setLikesFromThisIP(data.likesFromThisIP);
+        setCanLike(data.canLike);
+
+        // Update blog stats
+        setBlog(prev => prev ? {
+          ...prev,
+          likes: data.totalLikes,
+          views: data.totalViews
+        } : null);
+      }
+    } catch (error) {
+      console.error('Error getting like status:', error);
+    }
+  };
+
   const handleLike = async () => {
     if (!blog) return;
-    
+
+    // If user has reached max likes and wants to like again, show message
+    if (!canLike && likesFromThisIP >= 20) {
+      alert('You have reached the maximum of 20 likes for this post.');
+      return;
+    }
+
     try {
-      // This would require a new API endpoint for liking
-      // For now, we'll just toggle the liked state
-      setLiked(!liked);
-      setBlog(prev => prev ? { ...prev, likes: liked ? prev.likes - 1 : prev.likes + 1 } : null);
+      const action = 'like'; // Always like, users can like multiple times
+      const response = await fetch(`/api/blogs/${blog.id}/like`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ action }),
+      });
+
+      const data = await response.json();
+      if (data.success) {
+        setLikesFromThisIP(data.likesFromThisIP);
+        setCanLike(data.likesFromThisIP < 20);
+
+        // Update blog likes count
+        setBlog(prev => prev ? { ...prev, likes: data.likes } : null);
+      } else {
+        console.error('Like failed:', data.message);
+        if (data.message.includes('Maximum')) {
+          alert(data.message);
+        }
+      }
     } catch (error) {
       console.error('Error liking blog:', error);
     }
@@ -199,12 +255,29 @@ const BlogPage = () => {
                   
                   <button
                     onClick={handleLike}
-                    className="flex items-center space-x-1 hover:text-red-500 transition-colors"
+                    disabled={!canLike}
+                    className={`flex items-center space-x-1 transition-colors ${
+                      !canLike
+                        ? 'text-gray-400 cursor-not-allowed'
+                        : 'hover:text-red-500'
+                    }`}
+                    title={
+                      !canLike
+                        ? `You've reached the maximum of 20 likes for this post`
+                        : `Like this post (${likesFromThisIP}/20 likes used)`
+                    }
                   >
-                    <svg className={`w-4 h-4 ${liked ? 'text-red-500 fill-current' : ''}`} fill={liked ? 'currentColor' : 'none'} stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className={`w-4 h-4 ${likesFromThisIP > 0 ? 'text-red-500 fill-current' : ''}`} fill={likesFromThisIP > 0 ? 'currentColor' : 'none'} stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                     </svg>
-                    <span className={liked ? 'text-red-500' : ''}>{blog.likes} likes</span>
+                    <span className={likesFromThisIP > 0 ? 'text-red-500' : ''}>
+                      {blog.likes} likes
+                      {likesFromThisIP > 0 && (
+                        <span className="text-xs text-gray-500 ml-1">
+                          ({likesFromThisIP} from you)
+                        </span>
+                      )}
+                    </span>
                   </button>
                 </div>
 

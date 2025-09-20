@@ -19,8 +19,25 @@ interface Blog {
   updatedAt: string;
 }
 
+interface Analytics {
+  overview: {
+    totalBlogs: number;
+    totalViews: number;
+    totalLikes: number;
+    uniqueViewers: number;
+    recentViews: number;
+    recentLikes: number;
+  };
+  topPerforming: {
+    mostViewed: Blog[];
+    mostLiked: Blog[];
+  };
+  allBlogs: Blog[];
+}
+
 const BlogsPage = () => {
   const [blogs, setBlogs] = useState<Blog[]>([]);
+  const [analytics, setAnalytics] = useState<Analytics | null>(null);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<'all' | 'published' | 'draft'>('all');
 
@@ -29,7 +46,7 @@ const BlogsPage = () => {
       setLoading(true);
       const response = await fetch('/api/blogs');
       const data = await response.json();
-      
+
       if (data.success) {
         setBlogs(data.data);
       }
@@ -37,6 +54,19 @@ const BlogsPage = () => {
       console.error('Error fetching blogs:', error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const fetchAnalytics = async () => {
+    try {
+      const response = await fetch('/api/blogs/analytics');
+      const data = await response.json();
+
+      if (data.success) {
+        setAnalytics(data.data);
+      }
+    } catch (error) {
+      console.error('Error fetching analytics:', error);
     }
   };
 
@@ -61,6 +91,7 @@ const BlogsPage = () => {
 
   useEffect(() => {
     fetchBlogs();
+    fetchAnalytics();
   }, []);
 
   const filteredBlogs = blogs.filter(blog => {
@@ -96,6 +127,72 @@ const BlogsPage = () => {
                 </button>
               </Link>
             </div>
+
+            {/* Analytics Cards */}
+            {analytics && (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
+                <div className="bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg p-4 text-white">
+                  <div className="flex items-center">
+                    <div className="p-2 bg-white bg-opacity-30 rounded-lg">
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                      </svg>
+                    </div>
+                    <div className="ml-4">
+                      <h3 className="text-sm font-medium text-blue-100">Total Views</h3>
+                      <p className="text-2xl font-bold">{analytics.overview.totalViews.toLocaleString()}</p>
+                      <p className="text-xs text-blue-100">+{analytics.overview.recentViews} this week</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-gradient-to-r from-red-500 to-red-600 rounded-lg p-4 text-white">
+                  <div className="flex items-center">
+                    <div className="p-2 bg-white bg-opacity-30 rounded-lg">
+                      <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <div className="ml-4">
+                      <h3 className="text-sm font-medium text-red-100">Total Likes</h3>
+                      <p className="text-2xl font-bold">{analytics.overview.totalLikes.toLocaleString()}</p>
+                      <p className="text-xs text-red-100">+{analytics.overview.recentLikes} this week</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-gradient-to-r from-green-500 to-green-600 rounded-lg p-4 text-white">
+                  <div className="flex items-center">
+                    <div className="p-2 bg-white bg-opacity-30 rounded-lg">
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
+                      </svg>
+                    </div>
+                    <div className="ml-4">
+                      <h3 className="text-sm font-medium text-green-100">Unique Visitors</h3>
+                      <p className="text-2xl font-bold">{analytics.overview.uniqueViewers.toLocaleString()}</p>
+                      <p className="text-xs text-green-100">Different IP addresses</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-gradient-to-r from-purple-500 to-purple-600 rounded-lg p-4 text-white">
+                  <div className="flex items-center">
+                    <div className="p-2 bg-white bg-opacity-30 rounded-lg">
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9.5a2.5 2.5 0 00-2.5-2.5H15" />
+                      </svg>
+                    </div>
+                    <div className="ml-4">
+                      <h3 className="text-sm font-medium text-purple-100">Published Blogs</h3>
+                      <p className="text-2xl font-bold">{blogs.filter(b => b.published).length}</p>
+                      <p className="text-xs text-purple-100">of {analytics.overview.totalBlogs} total</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
 
             {/* Filter buttons */}
             <div className="flex space-x-2 mt-4">

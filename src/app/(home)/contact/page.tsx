@@ -1,6 +1,6 @@
 import React from 'react';
-import ContactSection from "@/sections/ContactSection/ContactSection";
-import BreadCrumbs from "@/components/BreadCrumbs/BreadCrumbs";
+import ContactSection from "@/app/(home)/sections/ContactSection/ContactSection";
+import BreadCrumbs from "@/app/(home)/components/BreadCrumbs/BreadCrumbs";
 import "./contact.css";
 
 const Contact = () => {
