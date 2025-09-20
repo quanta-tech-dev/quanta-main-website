@@ -1,7 +1,65 @@
-import React from 'react';
+'use client';
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
 import "./contactSection.css"
 
+// Form validation schema
+const contactSchema = z.object({
+  name: z.string().min(2, 'Name must be at least 2 characters').max(100, 'Name is too long'),
+  email: z.string().email('Please enter a valid email address'),
+  phone: z.string().min(10, 'Phone number must be at least 10 characters').max(20, 'Phone number is too long'),
+  companyName: z.string().min(2, 'Company name must be at least 2 characters').max(100, 'Company name is too long'),
+  websiteURL: z.string().url('Please enter a valid URL').optional().or(z.literal('')),
+  subject: z.string().max(200, 'Subject is too long').optional(),
+  message: z.string().min(10, 'Message must be at least 10 characters').max(2000, 'Message is too long'),
+});
+
+type ContactFormData = z.infer<typeof contactSchema>;
+
 const ContactSection = () => {
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+        reset,
+    } = useForm<ContactFormData>({
+        resolver: zodResolver(contactSchema),
+    });
+
+    const onSubmit = async (data: ContactFormData) => {
+        setIsSubmitting(true);
+        setSubmitStatus(null);
+
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                setSubmitStatus({ type: 'success', message: result.message });
+                reset(); // Clear the form
+            } else {
+                setSubmitStatus({ type: 'error', message: result.message || 'Something went wrong' });
+            }
+        } catch (error) {
+            console.error('Error submitting form:', error);
+            setSubmitStatus({ type: 'error', message: 'Network error. Please try again.' });
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
     return (
         <section className="w-full bg-white py-16 relative overflow-hidden" id="get-free-consult">
             <div className="custom-layout relative z-10">
@@ -44,8 +102,29 @@ const ContactSection = () => {
                 {/* White Form Section - 3/4 height */}
                 <div className="bg-white rounded-b-3xl shadow-lg -mt-1">
                     <div className="max-w-4xl mx-auto px-8 py-16">
+                        {/* Status Message */}
+                        {submitStatus && (
+                            <div className={`mb-6 p-4 rounded-lg ${
+                                submitStatus.type === 'success'
+                                    ? 'bg-green-50 border border-green-200 text-green-800'
+                                    : 'bg-red-50 border border-red-200 text-red-800'
+                            }`}>
+                                <div className="flex items-center">
+                                    {submitStatus.type === 'success' ? (
+                                        <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                                        </svg>
+                                    ) : (
+                                        <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                                        </svg>
+                                    )}
+                                    {submitStatus.message}
+                                </div>
+                            </div>
+                        )}
 
-                        <form className="space-y-8">
+                        <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
                             {/* Form Grid */}
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 {/* Name Field */}
@@ -57,12 +136,14 @@ const ContactSection = () => {
                                         <input
                                             type="text"
                                             id="name"
-                                            name="name"
-                                            required
-                                            className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300"
+                                            {...register('name')}
+                                            className={`w-full px-4 py-3 bg-gray-50 border rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300 ${errors.name ? 'border-red-300' : 'border-gray-300'}`}
                                             placeholder="Your full name"
                                             style={{ '--tw-ring-color': 'var(--main-color)' } as React.CSSProperties}
                                         />
+                                        {errors.name && (
+                                            <p className="text-red-600 text-sm mt-1">{errors.name.message}</p>
+                                        )}
                                     </div>
                                 </div>
 
@@ -75,12 +156,14 @@ const ContactSection = () => {
                                         <input
                                             type="email"
                                             id="email"
-                                            name="email"
-                                            required
-                                            className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300"
+                                            {...register('email')}
+                                            className={`w-full px-4 py-3 bg-gray-50 border rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300 ${errors.email ? 'border-red-300' : 'border-gray-300'}`}
                                             placeholder="your.email@company.com"
                                             style={{ '--tw-ring-color': 'var(--main-color)' } as React.CSSProperties}
                                         />
+                                        {errors.email && (
+                                            <p className="text-red-600 text-sm mt-1">{errors.email.message}</p>
+                                        )}
                                     </div>
                                 </div>
 
@@ -93,12 +176,14 @@ const ContactSection = () => {
                                         <input
                                             type="tel"
                                             id="phone"
-                                            name="phone"
-                                            required
-                                            className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300"
+                                            {...register('phone')}
+                                            className={`w-full px-4 py-3 bg-gray-50 border rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300 ${errors.phone ? 'border-red-300' : 'border-gray-300'}`}
                                             placeholder="+1 (555) 123-4567"
                                             style={{ '--tw-ring-color': 'var(--main-color)' } as React.CSSProperties}
                                         />
+                                        {errors.phone && (
+                                            <p className="text-red-600 text-sm mt-1">{errors.phone.message}</p>
+                                        )}
                                     </div>
                                 </div>
 
@@ -111,12 +196,14 @@ const ContactSection = () => {
                                         <input
                                             type="text"
                                             id="companyName"
-                                            name="companyName"
-                                            required
-                                            className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300"
+                                            {...register('companyName')}
+                                            className={`w-full px-4 py-3 bg-gray-50 border rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300 ${errors.companyName ? 'border-red-300' : 'border-gray-300'}`}
                                             placeholder="Your company name"
                                             style={{ '--tw-ring-color': 'var(--main-color)' } as React.CSSProperties}
                                         />
+                                        {errors.companyName && (
+                                            <p className="text-red-600 text-sm mt-1">{errors.companyName.message}</p>
+                                        )}
                                     </div>
                                 </div>
 
@@ -129,11 +216,14 @@ const ContactSection = () => {
                                         <input
                                             type="url"
                                             id="websiteURL"
-                                            name="websiteURL"
-                                            className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300"
+                                            {...register('websiteURL')}
+                                            className={`w-full px-4 py-3 bg-gray-50 border rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300 ${errors.websiteURL ? 'border-red-300' : 'border-gray-300'}`}
                                             placeholder="https://yourcompany.com"
                                             style={{ '--tw-ring-color': 'var(--main-color)' } as React.CSSProperties}
                                         />
+                                        {errors.websiteURL && (
+                                            <p className="text-red-600 text-sm mt-1">{errors.websiteURL.message}</p>
+                                        )}
                                     </div>
                                 </div>
 
@@ -146,10 +236,14 @@ const ContactSection = () => {
                                         <input
                                             type="text"
                                             id="subject"
-                                            name="subject"
-                                            className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300"
+                                            {...register('subject')}
+                                            className={`w-full px-4 py-3 bg-gray-50 border rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300 ${errors.subject ? 'border-red-300' : 'border-gray-300'}`}
+                                            placeholder="Subject (optional)"
                                             style={{ '--tw-ring-color': 'var(--main-color)' } as React.CSSProperties}
                                         />
+                                        {errors.subject && (
+                                            <p className="text-red-600 text-sm mt-1">{errors.subject.message}</p>
+                                        )}
                                     </div>
                                 </div>
                             </div>
@@ -162,13 +256,15 @@ const ContactSection = () => {
                                 <div className="relative">
                                     <textarea
                                         id="message"
-                                        name="message"
+                                        {...register('message')}
                                         rows={5}
-                                        required
-                                        className="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300 resize-none"
+                                        className={`w-full px-4 py-3 bg-gray-50 border rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300 resize-none ${errors.message ? 'border-red-300' : 'border-gray-300'}`}
                                         placeholder="Tell us about your project, challenges, and how we can help you..."
                                         style={{ '--tw-ring-color': 'var(--main-color)' } as React.CSSProperties}
                                     ></textarea>
+                                    {errors.message && (
+                                        <p className="text-red-600 text-sm mt-1">{errors.message.message}</p>
+                                    )}
                                 </div>
                             </div>
 
@@ -178,10 +274,11 @@ const ContactSection = () => {
                                     <div className="absolute inset-0 rounded-2xl blur opacity-75 group-hover:opacity-100 transition-opacity duration-300" style={{ background: `linear-gradient(to right, var(--main-color), var(--secondary-color))` }}></div>
                                     <button
                                         type="submit"
-                                        className="relative inline-flex items-center gap-4 text-white px-12 py-4 rounded-2xl font-bold text-lg transition-all duration-300 transform hover:scale-105 group"
+                                        disabled={isSubmitting}
+                                        className="relative inline-flex items-center gap-4 text-white px-12 py-4 rounded-2xl font-bold text-lg transition-all duration-300 transform hover:scale-105 group disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                                         style={{ background: `linear-gradient(to right, var(--main-color), var(--secondary-color))` }}
                                     >
-                                        <span>Send Message</span>
+                                        <span>{isSubmitting ? 'Sending...' : 'Send Message'}</span>
                                         <div className="flex items-center gap-2">
                                             <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
                                                 <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
