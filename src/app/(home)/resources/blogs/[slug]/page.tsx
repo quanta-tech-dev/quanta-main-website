@@ -3,8 +3,9 @@ import React, { useState, useEffect } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 import BreadCrumbs from "@/components/BreadCrumbs/BreadCrumbs";
 import Image from "next/image";
-import BlogSideBar from "@/components/BlogSideBar";
+import FeaturedBlogsSidebar from "@/components/FeaturedBlogsSidebar";
 import EditorJSRenderer from "@/components/EditorJSRenderer";
+import { getRelativeTime, calculateReadingTime } from '@/lib/timeUtils';
 import { OutputData } from '@editorjs/editorjs';
 
 interface Blog {
@@ -16,7 +17,6 @@ interface Blog {
   coverImage?: string;
   featured: boolean;
   published: boolean;
-  author: string;
   tags: string[];
   views: number;
   likes: number;
@@ -28,10 +28,11 @@ const BlogPage = () => {
   const router = useRouter();
   const params = useParams();
   const slug = params.slug as string;
-  
+
   const [blog, setBlog] = useState<Blog | null>(null);
   const [loading, setLoading] = useState(true);
   const [liked, setLiked] = useState(false);
+
 
   useEffect(() => {
     const fetchBlog = async () => {
@@ -137,9 +138,9 @@ const BlogPage = () => {
             {/* Blog Header */}
             <header className="mb-8">
               <div className="flex items-center space-x-4 text-sm text-gray-500 mb-4">
-                <span>{new Date(blog.createdAt).toLocaleDateString()}</span>
+                <span>{getRelativeTime(blog.createdAt)}</span>
                 <span>•</span>
-                <span>By {blog.author}</span>
+                <span>{calculateReadingTime(blog.content)} min read</span>
                 {blog.featured && (
                   <>
                     <span>•</span>
@@ -224,7 +225,7 @@ const BlogPage = () => {
           </div>
 
           {/* Sidebar */}
-          <BlogSideBar />
+          <FeaturedBlogsSidebar />
         </div>
       </article>
     </main>

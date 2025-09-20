@@ -13,6 +13,7 @@ export async function GET(request: NextRequest) {
       select: {
         id: true,
         title: true,
+        content: true,
         excerpt: true,
         slug: true,
         coverImage: true,

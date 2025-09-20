@@ -8,8 +8,10 @@ interface EditorJSRendererProps {
 }
 
 const EditorJSRenderer: React.FC<EditorJSRendererProps> = ({ data, className = '' }) => {
-  if (!data || !data.blocks || !Array.isArray(data.blocks)) return null;
-  
+  if (!data || !data.blocks || !Array.isArray(data.blocks)) {
+    return null;
+  }
+
   return (
     <div className={`prose prose-lg max-w-none ${className}`}>
       {data.blocks.map((block, index) => {
@@ -26,16 +28,20 @@ const EditorJSRenderer: React.FC<EditorJSRendererProps> = ({ data, className = '
                   block.data.level === 4 ? 'text-xl' :
                   block.data.level === 5 ? 'text-lg' : 'text-base'
                 }`}
-              >
-                {block.data.text}
-              </HeaderTag>
+                dangerouslySetInnerHTML={{ __html: block.data.text }}
+              />
             );
           
           case 'paragraph':
+            if (!block.data.text) {
+              return null;
+            }
             return (
-              <p key={index} className="mb-4 leading-relaxed text-gray-700">
-                {block.data.text}
-              </p>
+              <p
+                key={index}
+                className="mb-4 leading-relaxed text-gray-700"
+                dangerouslySetInnerHTML={{ __html: block.data.text }}
+              />
             );
           
           case 'list':
@@ -71,7 +77,17 @@ const EditorJSRenderer: React.FC<EditorJSRendererProps> = ({ data, className = '
             );
           
           default:
-            return null;
+            console.log('Unknown block type:', block.type, block);
+            return (
+              <div key={index} className="mb-4 p-4 bg-yellow-50 border-l-4 border-yellow-400">
+                <p className="text-sm text-yellow-700">
+                  <strong>Unsupported block type:</strong> {block.type}
+                </p>
+                <pre className="text-xs text-gray-600 mt-2 overflow-x-auto">
+                  {JSON.stringify(block, null, 2)}
+                </pre>
+              </div>
+            );
         }
       })}
     </div>

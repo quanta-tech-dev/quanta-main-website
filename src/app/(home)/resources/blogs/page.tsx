@@ -1,9 +1,11 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import BreadCrumbs from "@/components/BreadCrumbs/BreadCrumbs";
 import Image from "next/image";
 import Link from "next/link";
 import BlogSideBar from "@/components/BlogSideBar";
+import { getRelativeTime, calculateReadingTime } from '@/lib/timeUtils';
 
 interface Blog {
   id: string;
@@ -13,17 +15,21 @@ interface Blog {
   coverImage?: string;
   featured: boolean;
   published: boolean;
-  author: string;
   tags: string[];
   views: number;
   likes: number;
   createdAt: string;
   updatedAt: string;
+  content: { blocks?: Array<{ type: string; data?: { text?: string; items?: string[] } }> };
 }
 
-const Blogs = () => {
+const BlogsContent = () => {
+    const searchParams = useSearchParams();
     const [blogs, setBlogs] = useState<Blog[]>([]);
+    const [filteredBlogs, setFilteredBlogs] = useState<Blog[]>([]);
     const [loading, setLoading] = useState(true);
+    const [searchQuery, setSearchQuery] = useState('');
+    const [activeTag, setActiveTag] = useState('');
 
     const breadCrumbsItems = [
         {
@@ -44,6 +50,7 @@ const Blogs = () => {
                 
                 if (data.success) {
                     setBlogs(data.data);
+                    setFilteredBlogs(data.data);
                 }
             } catch (error) {
                 console.error('Error fetching blogs:', error);
@@ -54,6 +61,57 @@ const Blogs = () => {
 
         fetchBlogs();
     }, []);
+
+    // Initialize search and tag from URL parameters
+    useEffect(() => {
+        const urlSearch = searchParams.get('search');
+        const urlTag = searchParams.get('tag');
+
+        if (urlSearch) {
+            setSearchQuery(urlSearch);
+            setActiveTag(''); // Clear tag when searching
+        }
+
+        if (urlTag) {
+            setActiveTag(urlTag);
+            setSearchQuery(''); // Clear search when filtering by tag
+        }
+    }, [searchParams]);
+
+    // Filter blogs based on search query and active tag
+    useEffect(() => {
+        let filtered = blogs;
+
+        // Apply search filter
+        if (searchQuery.trim()) {
+            filtered = filtered.filter(blog =>
+                blog.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                (blog.excerpt && blog.excerpt.toLowerCase().includes(searchQuery.toLowerCase())) ||
+                blog.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()))
+            );
+        }
+
+        // Apply tag filter
+        if (activeTag.trim()) {
+            filtered = filtered.filter(blog =>
+                blog.tags.includes(activeTag)
+            );
+        }
+
+        setFilteredBlogs(filtered);
+    }, [searchQuery, activeTag, blogs]);
+
+    const handleSearch = (query: string) => {
+        setSearchQuery(query);
+    };
+
+    const handleTagFilter = (tag: string) => {
+        setActiveTag(tag);
+        // Clear search when filtering by tag
+        if (tag) {
+            setSearchQuery('');
+        }
+    };
 
     if (loading) {
         return (
@@ -83,18 +141,22 @@ const Blogs = () => {
             <section className="py-12 px-4 md:px-8 lg:px-16">
                 <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
                     <div className="space-y-8 lg:col-span-3">
-                        {blogs.length === 0 ? (
+                        {filteredBlogs.length === 0 ? (
                             <div className="text-center py-12">
                                 <div className="w-16 h-16 bg-gradient-to-r from-[#098FD7] to-[#027bbd] rounded-full flex items-center justify-center mx-auto mb-4">
                                     <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9.5a2.5 2.5 0 00-2.5-2.5H15" />
                                     </svg>
                                 </div>
-                                <h3 className="text-xl font-semibold text-gray-900 mb-2">No blogs published yet</h3>
-                                <p className="text-gray-600">Check back soon for new content!</p>
+                                <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                                    {searchQuery || activeTag ? 'No blogs found matching your criteria' : 'No blogs published yet'}
+                                </h3>
+                                <p className="text-gray-600">
+                                    {searchQuery || activeTag ? 'Try different keywords or clear your filters' : 'Check back soon for new content!'}
+                                </p>
                             </div>
                         ) : (
-                            blogs.map((blog) => (
+                            filteredBlogs.map((blog) => (
                                 <div
                                     key={blog.id}
                                     className="flex flex-col md:flex-row gap-6 items-start"
@@ -117,14 +179,14 @@ const Blogs = () => {
                                         )}
                                     </div>
                                     <div className="w-full md:w-2/3">
-                                        <div className="flex items-center space-x-4 text-sm text-gray-500 uppercase mb-2">
-                                            <span>{new Date(blog.createdAt).toLocaleDateString()}</span>
+                                        <div className="flex items-center space-x-4 text-sm text-gray-500 mb-2">
+                                            <span>{getRelativeTime(blog.createdAt)}</span>
                                             <span>•</span>
-                                            <span>By {blog.author}</span>
+                                            <span>{calculateReadingTime(blog.content)} min read</span>
                                             {blog.featured && (
                                                 <>
                                                     <span>•</span>
-                                                    <span className="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs normal-case">Featured</span>
+                                                    <span className="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs">Featured</span>
                                                 </>
                                             )}
                                         </div>
@@ -182,11 +244,30 @@ const Blogs = () => {
                     </div>
 
                     {/* Sidebar */}
-                    <BlogSideBar/>
+                    <BlogSideBar
+                        onSearch={handleSearch}
+                        searchQuery={searchQuery}
+                        onTagFilter={handleTagFilter}
+                        activeTag={activeTag}
+                    />
                 </div>
             </section>
 
         </main>
+    );
+};
+
+const Blogs = () => {
+    return (
+        <Suspense fallback={
+            <main className="mt-[1.8rem]">
+                <div className="flex justify-center items-center min-h-[400px]">
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#098FD7]"></div>
+                </div>
+            </main>
+        }>
+            <BlogsContent />
+        </Suspense>
     );
 };
 
