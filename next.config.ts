@@ -1,6 +1,9 @@
 import type {NextConfig} from "next";
 
 const nextConfig: NextConfig = {
+    // Enable standalone output for Docker
+    output: 'standalone',
+
     webpack(config) {
         config.module.rules.push({
             test: /\.svg$/,
@@ -36,6 +39,11 @@ const nextConfig: NextConfig = {
             },
         ],
     },
+
+    // Production optimizations
+    poweredByHeader: false,
+    generateEtags: false,
+    compress: true,
 };
 
 export default nextConfig;

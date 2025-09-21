@@ -1,0 +1,76 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: quanta-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: quantadb
+      POSTGRES_USER: quantauser
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-quantatech2025}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    ports:
+      - "5432:5432"
+    networks:
+      - quanta-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U quantauser -d quantadb"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Next.js Application
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: quanta-app
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: postgresql://quantauser:${POSTGRES_PASSWORD:-quantatech2025}@postgres:5432/quantadb
+      ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET:-your-secret-key-here}
+      SITE_URL: ${SITE_URL:-http://localhost:3000}
+    ports:
+      - "3000:3000"
+    networks:
+      - quanta-network
+    volumes:
+      - ./uploads:/app/uploads
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:3000/api/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Nginx Reverse Proxy (Optional)
+  nginx:
+    image: nginx:alpine
+    container_name: quanta-nginx
+    restart: unless-stopped
+    depends_on:
+      - app
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+      - ./uploads:/var/www/uploads:ro
+    networks:
+      - quanta-network
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  quanta-network:
+    driver: bridge
