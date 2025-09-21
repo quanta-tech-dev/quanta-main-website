@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -14,24 +8,22 @@ datasource db {
 }
 
 model Blog {
-  id          String   @id @default(cuid())
-  title       String
-  content     Json     // EditorJS content stored as JSON
-  slug        String   @unique
-  excerpt     String?
-  coverImage  String?  // Cover image URL
-  featured    Boolean  @default(false)
-  published   Boolean  @default(false)
-  author      String   @default("Admin")
-  tags        String[]
-  views       Int      @default(0)
-  likes       Int      @default(0)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-
-  // Relations
-  blogViews   BlogView[]
-  blogLikes   BlogLike[]
+  id         String     @id @default(cuid())
+  title      String
+  content    Json
+  slug       String     @unique
+  excerpt    String?
+  coverImage String?
+  featured   Boolean    @default(false)
+  published  Boolean    @default(false)
+  author     String     @default("Admin")
+  tags       String[]
+  views      Int        @default(0)
+  likes      Int        @default(0)
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  blogLikes  BlogLike[]
+  blogViews  BlogView[]
 
   @@map("blogs")
 }
@@ -42,8 +34,7 @@ model BlogView {
   ipAddress String
   userAgent String?
   createdAt DateTime @default(now())
-
-  blog Blog @relation(fields: [blogId], references: [id], onDelete: Cascade)
+  blog      Blog     @relation(fields: [blogId], references: [id], onDelete: Cascade)
 
   @@unique([blogId, ipAddress])
   @@map("blog_views")
@@ -55,8 +46,7 @@ model BlogLike {
   ipAddress String
   userAgent String?
   createdAt DateTime @default(now())
-
-  blog Blog @relation(fields: [blogId], references: [id], onDelete: Cascade)
+  blog      Blog     @relation(fields: [blogId], references: [id], onDelete: Cascade)
 
   @@map("blog_likes")
 }
@@ -86,7 +76,7 @@ model ContactMessage {
   websiteURL  String?
   subject     String?
   message     String
-  status      String   @default("new") // new, read, replied, archived
+  status      String   @default("new")
   ipAddress   String?
   userAgent   String?
   createdAt   DateTime @default(now())
