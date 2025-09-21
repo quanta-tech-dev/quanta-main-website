@@ -10,7 +10,7 @@ const HeaderButtons: React.FC<LangButtonProps> = () => {
   return (
     <div className="hidden lg:flex items-center gap-2">
       <a
-        href="https://wa.me/994557601617"
+        href="https://wa.me/994505504080"
         target="_blank"
         rel="noopener noreferrer"
         className="group relative flex items-center justify-center w-11 h-11 bg-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border border-gray-100"

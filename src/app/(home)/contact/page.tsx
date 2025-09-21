@@ -27,7 +27,8 @@ const Contact = () => {
                                 <span
                                     className="text-customGray-600 text-[1rem] leading-6 font-normal">Call us at:</span>
                                 <a className="text-[#101112] text-[1rem] leading-6 font-normal"
-                                   href="tel:>+919979738578">+91 997 973 8578</a>
+                                   href="tel:>+994505504080">+994 50 550 40 80</a>
+
                             </div>
                             <svg className="hidden sm:block group-last:hidden" width="52" height="52"
                                  viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -85,7 +86,7 @@ const Contact = () => {
                             <div className="flex gap-2 flex-col  sm:flex-row flex-wrap mt-1 font-normal text-lg">
                                 <a href="mailto:sales@quanta.com">sales@quanta.com</a>
                                 <p className="hidden sm:block">|</p>
-                                <a href="tel:+19734356491" className="font-normal">+1 973 435 6491</a>
+                                <a href="tel:+994505504080" className="font-normal">+994 50 550 40 80</a>
                             </div>
                         </div>
                     </div>
