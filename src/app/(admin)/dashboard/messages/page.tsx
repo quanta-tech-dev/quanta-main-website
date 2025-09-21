@@ -327,7 +327,6 @@ const MessagesPage = () => {
                             </p>
                           </div>
                         )}
-
                         {selectedMessage.subject && (
                           <div>
                             <span className="text-sm font-medium text-gray-700">Subject:</span>
