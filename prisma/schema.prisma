@@ -84,3 +84,18 @@ model ContactMessage {
 
   @@map("contact_messages")
 }
+
+model AdminSettings {
+  id          String   @id @default(cuid())
+  name        String   @default("Admin")
+  email       String   @unique @default("admin@quanta.com")
+  password    String   @default("admin123")
+  avatar      String?
+  title       String   @default("Administrator")
+  bio         String?
+  phone       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("admin_settings")
+}
