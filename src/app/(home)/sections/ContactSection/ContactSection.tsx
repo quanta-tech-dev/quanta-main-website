@@ -21,6 +21,7 @@ type ContactFormData = z.infer<typeof contactSchema>;
 const ContactSection = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitStatus, setSubmitStatus] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+    const [showSuccessModal, setShowSuccessModal] = useState(false);
 
     const {
         register,
@@ -48,7 +49,14 @@ const ContactSection = () => {
 
             if (result.success) {
                 setSubmitStatus({ type: 'success', message: result.message });
+                setShowSuccessModal(true);
                 reset(); // Clear the form
+
+                // Auto hide success modal after 5 seconds
+                setTimeout(() => {
+                    setShowSuccessModal(false);
+                    setSubmitStatus(null);
+                }, 5000);
             } else {
                 setSubmitStatus({ type: 'error', message: result.message || 'Something went wrong' });
             }
@@ -61,7 +69,80 @@ const ContactSection = () => {
     };
 
     return (
-        <section className="w-full bg-white py-16 relative overflow-hidden" id="get-free-consult">
+        <>
+            {/* Success Modal */}
+            {showSuccessModal && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+                    {/* Backdrop */}
+                    <div
+                        className="absolute inset-0 backdrop-blur-sm"
+                        onClick={() => {
+                            setShowSuccessModal(false);
+                            setSubmitStatus(null);
+                        }}
+                    ></div>
+
+                    {/* Modal */}
+                    <div className="relative bg-white rounded-3xl shadow-2xl max-w-md w-full mx-auto transform animate-[modalSlideIn_0.3s_ease-out] overflow-hidden">
+                        {/* Success Animation Background */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-green-50 via-emerald-50 to-green-100"></div>
+
+                        {/* Close Button */}
+                        <button
+                            onClick={() => {
+                                setShowSuccessModal(false);
+                                setSubmitStatus(null);
+                            }}
+                            className="absolute top-4 right-4 z-10 p-2 text-gray-400 hover:text-gray-600 transition-colors rounded-full hover:bg-white/50"
+                        >
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+
+                        {/* Content */}
+                        <div className="relative z-10 p-8 text-center">
+                            {/* Success Icon with Animation */}
+                            <div className="mx-auto mb-6 w-20 h-20 rounded-full bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center shadow-lg animate-[bounce_1s_ease-in-out]">
+                                <svg className="w-10 h-10 text-white animate-[checkMark_0.5s_ease-in-out_0.3s_both]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="3">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+
+                            {/* Success Title */}
+                            <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                                Message Sent Successfully! 🎉
+                            </h3>
+
+                            {/* Success Message */}
+                            <p className="text-gray-600 mb-6 leading-relaxed">
+                                {submitStatus?.message || 'Your message has been sent successfully! We will get back to you soon.'}
+                            </p>
+
+                            {/* Action Button */}
+                            <button
+                                onClick={() => {
+                                    setShowSuccessModal(false);
+                                    setSubmitStatus(null);
+                                }}
+                                className="inline-flex items-center gap-2 bg-gradient-to-r from-green-500 to-emerald-600 text-white px-8 py-3 rounded-2xl font-semibold hover:from-green-600 hover:to-emerald-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                            >
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M19 10a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Awesome!
+                            </button>
+
+                            {/* Decorative Elements */}
+                            <div className="absolute top-4 left-4 w-8 h-8 rounded-full bg-green-200 opacity-50 animate-pulse"></div>
+                            <div className="absolute bottom-4 right-4 w-6 h-6 rounded-full bg-emerald-200 opacity-30 animate-pulse delay-1000"></div>
+                            <div className="absolute top-1/2 right-8 w-4 h-4 rounded-full bg-green-300 opacity-40 animate-pulse delay-500"></div>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            <section className="w-full bg-white py-16 relative overflow-hidden" id="get-free-consult">
             <div className="custom-layout relative z-10">
                 {/* Top Gradient Header Section - 1/4 height */}
                 <div className="relative rounded-t-3xl overflow-hidden h-80" style={{ backgroundColor: 'var(--intense-color)' }}>
@@ -293,6 +374,7 @@ const ContactSection = () => {
                 </div>
             </div>
         </section>
+        </>
     );
 };
 

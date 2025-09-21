@@ -31,7 +31,7 @@ const Contact = () => {
                             </div>
                             <svg className="hidden sm:block group-last:hidden" width="52" height="52"
                                  viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                <path fillRule="evenodd" clipRule="evenodd"
                                       d="M22.0231 5.04691C22.8259 4.64555 23.802 4.97092 24.2033 5.77363L33.9533 25.2736C34.1821 25.7311 34.1821 26.2696 33.9533 26.7271L24.2033 46.2271C23.802 47.0298 22.8259 47.3552 22.0231 46.9538C21.2204 46.5524 20.8951 45.5763 21.2964 44.7736L30.6831 26.0004L21.2964 7.22708C20.8951 6.42436 21.2204 5.44827 22.0231 5.04691Z"
                                       fill="#D1D7DC"></path>
                             </svg>
@@ -59,10 +59,10 @@ const Contact = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 bg-[#F7F9FA] mb-10">
                         <div className="p-4 md:p-10 md:ps-20 ">
                             <div className="flex items-center gap-3 mb-8">
-                                <svg xmlns="http://www.w3.org/2000/svg" width={50} height={36} shape-rendering="geometricPrecision"
-                                     text-rendering="geometricPrecision" image-rendering="optimizeQuality"
-                                     fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 512 356.18">
-                                    <g fill-rule="nonzero">
+                                <svg xmlns="http://www.w3.org/2000/svg" width={50} height={36} shapeRendering="geometricPrecision"
+                                     textRendering="geometricPrecision" imageRendering="optimizeQuality"
+                                     fillRule="evenodd" clipRule="evenodd" viewBox="0 0 512 356.18">
+                                    <g fillRule="nonzero">
                                         <path fill="#509E2F"
                                               d="M28.137 0H483.86C499.337 0 512 12.663 512 28.14v299.9c0 15.477-12.663 28.14-28.14 28.14H28.137C12.663 356.18 0 343.517 0 328.04V28.14C0 12.663 12.663 0 28.137 0z"/>
                                         <path fill="#EF3340"
