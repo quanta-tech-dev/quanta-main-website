@@ -80,3 +80,5 @@ next.config.js.bak
 
 # Uploads (will be mounted as volume)
 uploads
+
+.README-DEPLOYMENT.md
