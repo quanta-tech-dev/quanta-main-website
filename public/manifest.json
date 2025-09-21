@@ -1,0 +1,71 @@
+{
+  "name": "Quanta Technology - İnnovasiya və Texnologiya Həlləri",
+  "short_name": "Quanta Tech",
+  "description": "Azərbaycanda aparıcı texnologiya şirkəti. Web development, mobil tətbiqlər və rəqəmsal həllər.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#098FD7",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "az",
+  "categories": ["technology", "business", "productivity"],
+  "icons": [
+    {
+      "src": "/web-app-manifest-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/web-app-manifest-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Admin Panel",
+      "short_name": "Admin",
+      "description": "Quanta Technology admin paneli",
+      "url": "/dashboard",
+      "icons": [
+        {
+          "src": "/web-app-manifest-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Xidmətlər",
+      "short_name": "Services",
+      "description": "Bizim texnologiya xidmətləri",
+      "url": "/services",
+      "icons": [
+        {
+          "src": "/web-app-manifest-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Əlaqə",
+      "short_name": "Contact",
+      "description": "Bizimlə əlaqə saxlayın",
+      "url": "/contact",
+      "icons": [
+        {
+          "src": "/web-app-manifest-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ]
+}

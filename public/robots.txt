@@ -1,0 +1,30 @@
+# Quanta Technology - Robots.txt
+
+User-agent: *
+Allow: /
+
+# Admin panel qorunmalı
+Disallow: /dashboard/
+Disallow: /api/
+Disallow: /admin/
+
+# Static assets
+Allow: /images/
+Allow: /icons/
+Allow: /uploads/
+Allow: /_next/static/
+
+# Sitemap
+Sitemap: https://quanta.az/sitemap.xml
+
+# Crawler delay (seconds)
+Crawl-delay: 1
+
+# Specific bot rules
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
