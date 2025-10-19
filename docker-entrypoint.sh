@@ -12,9 +12,9 @@ done
 
 echo "✅ Database is ready!"
 
-# Run Prisma migrations
+# Run Prisma migrations (PRODUCTION SAFE)
 echo "🔄 Running database migrations..."
-npx prisma db push --accept-data-loss --skip-generate
+npx prisma migrate deploy
 
 # Start the application
 echo "🎉 Starting Next.js application..."
